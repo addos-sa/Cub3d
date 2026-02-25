@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/02/25 10:40:13 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/02/25 10:58:46 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ typedef struct s_cub3D
 	char		**map_copy;
 }	t_cub3D;
 
-
+t_cub3D	init_game(t_cub3D *game, char **map);
 
 #endif
