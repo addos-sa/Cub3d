@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/02/25 10:58:46 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/02/25 12:05:08 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_screen
     int     m_width;
     int     m_height;
     int     rgb_floor;
-	int		rgb_ceiling
+	int		rgb_ceiling;
 }	t_screen;
 
 typedef struct s_point
@@ -54,9 +54,9 @@ typedef struct s_textures
 
 typedef struct s_cub3D
 {
-	t_screen	screen;
-	t_player	player;
-	t_textures	textures;
+	t_screen	*screen;
+	t_player	*player;
+	t_textures	*textures;
 	mlx_t		*mlx;
 	bool		game_running;
 	int 		image_c;

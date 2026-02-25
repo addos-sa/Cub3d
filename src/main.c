@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:04 by frasanch          #+#    #+#             */
-/*   Updated: 2026/02/24 12:14:04 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/02/25 11:33:39 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ static int	check_file_type(char *map_path)
 
 int	bad_arg(int argc)
 {
-	if (argc == 1)
-		return (ft_printf("Error\nNo map sent, try './cub3D <map.cub>'\n"), 1);
+	if (argc > 0)
+	{
+		if (argc == 1)
+			return (ft_printf("Error\nNo map sent, try './cub3D <map.cub>'\n"), 1);
+		else
+		{
+			return (ft_printf("Error\nToo many arguments sent, try \
+				'./cub3D <map.cub>'\n"), 1);
+		}
+	}
 	else
-		return (ft_printf("Error\nToo many arguments sent, try \
-			'./cub3D <map.cub>'\n"), 1);
+		return (ft_printf("Error\nMap sent is empty\n"), 1);
 }
 
 int	main(int argc, char **argv)
@@ -45,7 +52,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (ft_strlen(argv[1]) == 0)
-			return (bad_arg(1));
+			return (bad_arg(0));
 		game = init_game(argv[1], &game);
 	}
 	else
