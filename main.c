@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:15:22 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/24 15:42:44 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/02/25 11:55:35 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-	t_game	*game;
+	t_cub3D	*cub3d;
 	
 	if (argc != 2)
 		return (1);
@@ -22,8 +22,8 @@ int main(int argc, char **argv)
 	{
 		return (0);
 	}*/
-	game = malloc(sizeof(t_game));
-	ini_game(game);
-	mlx_loop(game->mlx);
+	cub3d = malloc(sizeof(t_cub3D));
+	ini_game(cub3d);
+	mlx_loop(cub3d->mlx);
 	return (0);
 }

@@ -6,12 +6,12 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 11:22:20 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/02/25 12:01:13 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D.H
-#define CUB3D.H
+#ifndef CUB3D_H
+#define CUB3D_H
 
 # include <sys/time.h>
 # include <math.h>
@@ -27,7 +27,7 @@ typedef struct s_screen
     int     m_width;
     int     m_height;
     int     rgb_floor;
-	int		rgb_ceiling
+	int		rgb_ceiling;
 }	t_screen;
 
 typedef struct s_point
@@ -57,9 +57,9 @@ typedef struct s_textures
 
 typedef struct s_cub3D
 {
-	t_screen	screen;
-	t_player	player;
-	t_textures	textures;
+	t_screen	*screen;
+	t_player	*player;
+	t_textures	*textures;
 	mlx_t		*mlx;
 	bool		game_running;
 	int 		image_c;

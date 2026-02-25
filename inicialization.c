@@ -6,15 +6,19 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:39:24 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 08:52:38 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/02/25 11:59:15 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ini_game(t_game *game)
+void	ini_game(t_cub3D *game)
 {
-	game->mlx = mlx_init(1280, 780, "Cub3d");
-	game->img = mlx_new_window(game->mlx, );
-	game->window = mlx_new_image(game->mlx, 1280, 780);
+	game->mlx = mlx_init(1280, 780, "Cub3d", 1);
+	game->game_running = 0;
+	game->image_c = 0;
+	game->map_copy = NULL;
+	game->player = malloc(sizeof(t_player));
+	game->screen = malloc(sizeof(t_screen));
+	game->textures = malloc(sizeof(t_textures));
 }
