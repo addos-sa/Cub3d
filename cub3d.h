@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 12:49:34 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/02/25 12:51:58 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_point
 
 typedef struct s_player
 {
-	t_point	position;
-	t_point	angle;
+	t_point	*position;
+	t_point	*angle;
 }	t_player;
 
 
