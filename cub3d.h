@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 12:51:58 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:04:20 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,19 @@ typedef struct s_cub3D
 	int 		image_c;
 	char		**map_copy;
 }	t_cub3D;
+
+//INICIALIZATION
+int	ini_game(t_cub3D *game);
+int	ini_player(t_player *player);
+int	ini_texture(t_textures *textures);
+int	ini_screen(t_screen *screen);
+
+//CLEAN UP
+free_player(t_player *player);
+free_textures(t_textures *textures);
+free_game(t_cub3D *game);
+
+//MATH
+int	pythagoras(int x, int y);
 
 #endif

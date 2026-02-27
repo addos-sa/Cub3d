@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 08:49:21 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 08:50:48 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/02/27 10:29:11 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,9 @@
 int	pythagoras(int x, int y)
 {
 	return (sqrt(x * x + y * y));
+}
+
+void	raycasting()
+{
+	
 }

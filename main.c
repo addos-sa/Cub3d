@@ -6,13 +6,18 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:15:22 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 11:55:35 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:06:35 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+void	game_loop(t_cub3D *game)
+{
+	
+}
+
+int	main(int argc, char **argv)
 {
 	t_cub3D	*cub3d;
 	
