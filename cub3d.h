@@ -6,13 +6,15 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/03/06 11:54:36 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:39:18 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
 
+# define WIDTH 1280
+# define HEIGHT 720
 # define LEFT 65361
 # define RIGHT 65363
 # define PI 3.14159265359
