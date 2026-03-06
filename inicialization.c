@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:39:24 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 13:34:01 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:54:10 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,13 @@ int	ini_player(t_player *player)
 	}
 	player->position->x = 0;
 	player->position->y = 0;
-	player->angle = malloc(sizeof(t_point));
-	if (!player->angle)
-	{
-		free(player);
-		free(player->position);
-		return (1);
-	}
-	player->angle->y = 0.66;
-	player->angle->x = 0;
+	player->angle = PI / 2;
+	player->k_down = false;
+	player->k_left = false;
+	player->k_right = false;
+	player->k_up = false;
+	player->r_left = false;
+	player->r_right = false;
 	return (0);
 }
 

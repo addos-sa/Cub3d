@@ -6,12 +6,16 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/25 15:04:20 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:54:36 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
+
+# define LEFT 65361
+# define RIGHT 65363
+# define PI 3.14159265359
 
 # include <sys/time.h>
 # include <math.h>
@@ -39,7 +43,13 @@ typedef struct s_point
 typedef struct s_player
 {
 	t_point	*position;
-	t_point	*angle;
+	double	angle;
+	bool	k_up;
+	bool	k_down;
+	bool	k_right;
+	bool	k_left;
+	bool	r_left;
+	bool	r_right;
 }	t_player;
 
 
