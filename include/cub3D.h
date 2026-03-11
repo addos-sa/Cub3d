@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/02/25 12:05:08 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/03/11 09:52:35 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <fcntl.h>
+# include "../src/libft/libft.h"
+# include "../src/MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_screen
 {
 	char    **grid;
-    int     m_width;
-    int     m_height;
+	char	*floor_path;
+	char	*ceiling_path;
     int     rgb_floor;
 	int		rgb_ceiling;
+	int		n_player;
 }	t_screen;
 
 typedef struct s_point

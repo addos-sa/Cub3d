@@ -1,0 +1,29 @@
+
+## Parsing Strategy (using existing functions)
+
+1. **Read the .cub file line by line**
+	- Use `get_next_line` to read each line from the file descriptor.
+
+2. **Identify and extract texture paths**
+	- Use `ft_strncmp` to check for texture identifiers (`NO`, `SO`, `WE`, `EA`).
+	- Use `ft_strtrim` to clean up whitespace.
+	- Use `ft_substr` and `ft_strdup` to extract and store the path.
+
+3. **Extract floor and ceiling colors**
+	- Use `ft_split` to split the color string by `,`.
+	- Use `ft_atoi` to convert string components to integers.
+	- Use `ft_isdigit` to validate numeric input.
+
+4. **Load textures**
+	- Use `mlx_load_png` to load textures, then initialize with your texture init function.
+
+5. **Parse and validate the map**
+	- Use `ft_strlen` for row width, `ft_strchr` for player position, and `map_validation` for wall checks.
+
+6. **General parsing flow**
+	- Open file, loop with `get_next_line`.
+	- For each line: trim, check type, store in struct.
+	- After all identifiers, treat remaining lines as the map grid.
+	- Store grid and validate.
+
+This approach uses only your provided libft and ft_printf utilities, ensuring no new helpers are needed.

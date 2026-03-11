@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 15:15:22 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/02/24 15:42:44 by addos-sa         ###   ########.fr       */
+/*   Created: 2026/02/25 08:49:21 by addos-sa          #+#    #+#             */
+/*   Updated: 2026/02/25 13:04:12 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3D.h"
 
-int main(int argc, char **argv)
+int	pythagoras(int x, int y)
 {
-	t_game	*game;
-	
-	if (argc != 2)
-		return (1);
-	/* if (pars() != 0)
-	{
-		return (0);
-	}*/
-	game = malloc(sizeof(t_game));
-	ini_game(game);
-	mlx_loop(game->mlx);
-	return (0);
+	return (sqrt(x * x + y * y));
 }
