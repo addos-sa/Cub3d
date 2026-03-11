@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/11 09:52:35 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:28:39 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ typedef struct s_cub3D
 	char		**map_copy;
 }	t_cub3D;
 
-t_cub3D	init_game(t_cub3D *game, char **map);
+int		init_game(t_cub3D *game, char **map);
+int		parsing(t_cub3D *game, char *map_path);
+char	**get_map(int fd, char *map_path);
+int		map_parse(t_cub3D *game, int fd, char *map_path);
+int		parse_elements(t_cub3D *game, char **file, int *i);
 
 #endif

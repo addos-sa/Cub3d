@@ -6,11 +6,11 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:55:48 by frasanch          #+#    #+#             */
-/*   Updated: 2026/02/25 18:00:41 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:11:30 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 static int	line_counter(int fd)
 {

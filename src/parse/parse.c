@@ -6,11 +6,11 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:58:28 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/11 12:03:23 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:21:21 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 static void	init_parsing_fields(t_cub3D *game)
 {
@@ -54,7 +54,7 @@ static int	check_existence_file(char *map_path)
 	return (fd);
 }
 
-int	parsing(char *map_path, t_cub3D *game)
+int	parsing(t_cub3D *game, char *map_path)
 {
 	int	fd;
 
@@ -67,19 +67,8 @@ int	parsing(char *map_path, t_cub3D *game)
 	fd = check_existence_file(map_path);
 	if (fd < 0)
 		return (1);
-	if (parse_file(game, fd) != 0)
-	{
-		get_next_line(-1);
-		close(fd);
+	if (map_parse(game, fd, map_path))
 		return (1);
-	}
-	if (validate_parsed_data(game) != 0)
-	{
-		get_next_line(-1);
-		close(fd);
+	if (validate_parsed_data(game))
 		return (1);
-	}
-	close(fd);
-	get_next_line(-1);
-	return (0);
 }
