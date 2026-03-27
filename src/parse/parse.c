@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:58:28 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/11 13:21:21 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/03/27 12:13:24 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void	init_parsing_fields(t_cub3D *game)
+static void	init_map_elements(t_cub3D *game)
 {
 	game->screen->grid = NULL;
 	game->screen->floor_path = NULL;
@@ -21,7 +21,7 @@ static void	init_parsing_fields(t_cub3D *game)
 	game->screen->rgb_ceiling = 0;
 	game->screen->n_player = 0;
 	game->textures->n_path = NULL;
-	game->textures->so_path = NULL;
+	game->textures->s_path = NULL;
 	game->textures->w_path = NULL;
 	game->textures->e_path = NULL;
 }
@@ -43,18 +43,18 @@ static int	check_file_type(char *map_path)
 	return (0);
 }
 
-static int	check_existence_file(char *map_path)
+static int	check_file_existence(char *map_path)
 {
 	int	fd;
 
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
-		printf("Error\n File <%s> does not exist or cannot be opened.\n",
+		printf("Error\n File <%s> does not exist or cannot be opened\n",
 			map_path);
 	return (fd);
 }
 
-int	parsing(t_cub3D *game, char *map_path)
+int	parse(t_cub3D *game, char *map_path)
 {
 	int	fd;
 
@@ -64,10 +64,12 @@ int	parsing(t_cub3D *game, char *map_path)
 		printf("Error\n Map is not a .cub file\n");
 		return (1);
 	}
-	fd = check_existence_file(map_path);
+	fd = chek_file_existance(map_path);
 	if (fd < 0)
 		return (1);
-	if (map_parse(game, fd, map_path))
+	if (parse_map(game, fd, map_path))
+		return (1);
+	if (parse_player(game))
 		return (1);
 	if (validate_parsed_data(game))
 		return (1);

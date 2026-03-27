@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_colors.c                                   :+:      :+:    :+:   */
+/*   validation_colours.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboussem <aboussem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 15:52:45 by emilgarc          #+#    #+#             */
-/*   Updated: 2025/12/01 10:53:31 by aboussem         ###   ########.fr       */
+/*   Created: 2026/03/19 10:33:05 by frasanch          #+#    #+#             */
+/*   Updated: 2026/03/20 12:06:41 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../include/cub3D.h"
 
-static const char	*skip_spaces(const char *s)
-{
-	if (!s)
-		return (NULL);
-	while (*s && (*s == ' ' || *s == '\t'))
-		s++;
-	return (s);
-}
-
-static int	parse_number(const char **str, int *out)
+static int	separate_numbers(const char **str, int *out)
 {
 	int			val;
 	const char	*s;
@@ -45,7 +36,7 @@ static int	parse_number(const char **str, int *out)
 	return (0);
 }
 
-static int	validate_rgb_string(const char *str)
+static int	validate_colour_path(const char *str)
 {
 	int	r;
 	int	g;
@@ -53,19 +44,19 @@ static int	validate_rgb_string(const char *str)
 
 	if (!str)
 		return (1);
-	if (parse_number(&str, &r))
+	if (separate_numbers(&str, &r))
 		return (1);
 	str = skip_spaces(str);
 	if (*str != ',')
 		return (1);
 	str++;
-	if (parse_number(&str, &g))
+	if (separate_numbers(&str, &g))
 		return (1);
 	str = skip_spaces(str);
 	if (*str != ',')
 		return (1);
 	str++;
-	if (parse_number(&str, &b))
+	if (separate_numbers(&str, &b))
 		return (1);
 	str = skip_spaces(str);
 	if (*str != '\0' && *str != '\n')
@@ -73,28 +64,28 @@ static int	validate_rgb_string(const char *str)
 	return (0);
 }
 
-int	check_colors(t_elements *elem)
+int validate_colours(t_screen *screen)
 {
-	if (!elem)
+	if (!screen)
 		return (1);
-	if (!elem->f)
+	if (!screen->floor_path)
 	{
-		ft_putendl_fd("Error\nMissing F (floor) color definition", 2);
-		return (1);
-	}
-	if (!elem->c)
-	{
-		ft_putendl_fd("Error\nMissing C (ceiling) color definition", 2);
+		ft_putendl_fd("Error\nMissing Floor color definition path", 2);
 		return (1);
 	}
-	if (validate_rgb_string(elem->f))
+	if (!screen->ceiling_path)
 	{
-		ft_putendl_fd("Error\nInvalid F (must be R,G,B with values 0-255)", 2);
+		ft_putendl_fd("Error\nMissing Ceiling color definition path", 2);
 		return (1);
 	}
-	if (validate_rgb_string(elem->c))
+	if (validate_colour_path(screen->floor_path))
 	{
-		ft_putendl_fd("Error\nInvalid C (must be R,G,B with values 0-255)", 2);
+		ft_putendl_fd("Error\nInvalid Floor string must be RGB", 2);
+		return (1);
+	}
+	if (validate_colour_path(screen->ceiling_path))
+	{
+		ft_putendl_fd("Error\nInvalid Ceiling string must be RGB", 2);
 		return (1);
 	}
 	return (0);

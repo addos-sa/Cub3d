@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parse.c                                        :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:00:00 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/11 13:27:37 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/03/19 11:08:03 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	**extract_grid(char **file, int start)
 	return (grid);
 }
 
-int	map_parse(t_cub3D *game, int fd, char *map_path)
+int	parse_map(t_cub3D *game, int fd, char *map_path)
 {
 	char	**file;
 	int		i;
@@ -67,7 +67,7 @@ int	map_parse(t_cub3D *game, int fd, char *map_path)
 	if (!file)
 		return (1);
 	i = 0;
-	if (parse_elements(game, file, &i) != 0)
+	if (parse_paths(game, file, &i) != 0)
 	{
 		free_file(file);
 		return (1);
