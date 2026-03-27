@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/03/06 12:39:18 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:21:16 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-# define LEFT 65361
-# define RIGHT 65363
+# define LEFT 263
+# define RIGHT 262
 # define PI 3.14159265359
 
 # include <sys/time.h>
@@ -29,10 +29,10 @@
 
 typedef struct s_screen
 {
-	char    **grid;
-    int     m_width;
-    int     m_height;
-    int     rgb_floor;
+	char	**grid;
+	int		m_width;
+	int		m_height;
+	int		rgb_floor;
 	int		rgb_ceiling;
 }	t_screen;
 
@@ -44,7 +44,7 @@ typedef struct s_point
 
 typedef struct s_player
 {
-	t_point	*position;
+	t_point	*pos;
 	double	angle;
 	bool	k_up;
 	bool	k_down;
@@ -73,6 +73,7 @@ typedef struct s_cub3D
 	t_player	*player;
 	t_textures	*textures;
 	mlx_t		*mlx;
+	mlx_image_t	*img;
 	bool		game_running;
 	int 		image_c;
 	char		**map_copy;
@@ -86,10 +87,22 @@ int	ini_screen(t_screen *screen);
 
 //CLEAN UP
 free_player(t_player *player);
-free_textures(t_textures *textures);
+free_texture(t_textures *textures);
 free_game(t_cub3D *game);
 
+//KEYS
+void	case_key_pressed(t_cub3D *game, double cos_ang, double sin_ang, int nm);
+void	which_key(t_cub3D *game, double cf, double sf, double p_y, double p_x);
+void	key_pressed(t_cub3D *game);
+void	player_movement(t_cub3D *game);
+void	game_loop(void *param);
+int		is_wall(t_cub3D *game, double pos_x, double pos_y);
+
 //MATH
-int	pythagoras(int x, int y);
+double	pythagoras(double x, double y);
+
+//GAME
+void	game_loop(void *param);
+int		draw_loop(t_cub3D *game);
 
 #endif

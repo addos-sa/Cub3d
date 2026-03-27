@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:39:24 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/03/06 11:54:10 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:08:14 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	ini_texture(t_textures *textures)
 int	ini_player(t_player *player)
 {
 	player = malloc(sizeof(t_player));
-	player->position = malloc(sizeof(t_point));
-	if (!player->position)
+	player->pos = malloc(sizeof(t_point));
+	if (!player->pos)
 	{
 		free(player);
 		return (1);
 	}
-	player->position->x = 0;
-	player->position->y = 0;
+	player->pos->x = 0;
+	player->pos->y = 0;
 	player->angle = PI / 2;
 	player->k_down = false;
 	player->k_left = false;
@@ -46,12 +46,19 @@ int	ini_player(t_player *player)
 int	ini_game(t_cub3D *game)
 {
 	game->mlx = mlx_init(1280, 780, "Cub3d", 1);
+	if (!game->mlx)
+		return (1);
+		game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->img)
+		return (1);
+	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)//esto no estoy seguro si tiene que estar
+		return (1);
 	game->game_running = 0;
 	game->image_c = 0;
 	game->map_copy = NULL;
 	if (ini_player(game->player) != 0)
 		return (1);
-	if (ini_textures(game->textures) != 0)
+	if (ini_texture(game->textures) != 0)
 	{
 		free_player(game->player);
 		free_game(game);
