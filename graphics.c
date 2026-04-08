@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:14 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/08 11:50:08 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/08 15:04:05 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,64 @@ bool	touch_wall(double ray_x, double ray_y, t_cub3D *game)
 	return (0);
 }
 
+int	text_to_color(t_cub3D *game, int tex_x, int tex_y)
+{
+	int				index;
+	int				color;
+	mlx_texture_t	*tex;
+
+	tex = game->ac_text;
+	if (tex_x < 0 || (uint32_t)tex_x >= tex->width || 
+		tex_y < 0 || (uint32_t)tex_y >= tex->height)
+		return (0);
+	index = (tex_y * tex->width + tex_x) * 4;
+	color = (tex->pixels[index] << 16)
+		| (tex->pixels[index + 1] << 8)
+		| (tex->pixels[index + 2]);
+	return (color);
+}
+
+void	draw_columm(t_cub3D *game, int i, double height, int tex_x)
+{
+	int		y;
+	int		end;
+	double	step;
+	double	tex_pos;
+	int		color;
+
+	y = (HEIGHT - height) / 2;
+	end = y + height;
+	if (end >= HEIGHT)
+		end = HEIGHT - 1;
+	step = 64.0 / height;
+	tex_pos = 0;
+	if (y < 0)
+	{
+		tex_pos = -y * step;
+		y = 0;
+	}
+	while (y < end)
+	{
+		color = text_to_color(game, tex_x, (int)tex_pos & 63);
+		tex_pos += step;
+		pixeling(i, y, color, game);
+		y++;
+	}
+}
+
 void	put_pixel(t_cub3D *game, double ray_x, double ray_y, int i)
 {
 	double	dist;
 	double	height;
-	int		start_y;
-	int		end;
+	int		text_x;
 
 	dist = fix_dist(game, ray_x - game->player->pos->x,
 		ray_y - game->player->pos->y);
 	if (dist <= 0)
 		dist = 0.0001;
 	height = HEIGHT / dist;
-	start_y = (HEIGHT - height) / 2;
-	end = start_y + height;
-	if (end >= HEIGHT)
-		end = HEIGHT - 1;
-	while (start_y < end)
-	{
-		pixeling(i, start_y, 255, game);
-		start_y++;
-	}
+	text_x = (int)((ray_x + ray_y) * 64) % 64;
+	draw_columm(game, i, height, text_x);
 }
 
 void	draw_line(t_cub3D *game, int i, double start_x)
@@ -92,6 +129,7 @@ void	draw_line(t_cub3D *game, int i, double start_x)
 		ray_y += sin_angle;
 		dist_traveled += 0.05;
 	}
+	game->ac_text = wl_text(game, ray_x, ray_y, start_x);
 	put_pixel(game, ray_x, ray_y, i);
 }
 
