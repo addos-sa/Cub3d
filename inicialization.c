@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:39:24 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/03/12 14:08:14 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/03/27 10:39:04 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ini_game(t_cub3D *game)
 	game->mlx = mlx_init(1280, 780, "Cub3d", 1);
 	if (!game->mlx)
 		return (1);
-		game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 		return (1);
 	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)//esto no estoy seguro si tiene que estar

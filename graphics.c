@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:14 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/03/24 16:08:10 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/08 11:50:08 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	draw_line(t_cub3D *game, int i, double start_x)
 	double	sin_angle;
 	double	ray_x;
 	double	ray_y;
-	
+
 	dist_traveled = 0;
 	cos_angle = cos(start_x) * 0.05;
 	sin_angle = sin(start_x) * 0.05;
