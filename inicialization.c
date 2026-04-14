@@ -6,11 +6,26 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:39:24 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/03/27 10:39:04 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:02:16 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_ray	*ini_ray(double start_x, int i, t_cub3D *game)
+{
+	t_ray	*ray;
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		return (NULL);
+	ray->cos_a = cos(start_x) * 0.05;
+	ray->sin_a = sin(start_x) * 0.05;
+	ray->ray_x = game->player->pos->x;
+	ray->ray_y = game->player->pos->y;
+	ray->wall_hit = 0.00;
+	return (ray);
+}
 
 int	ini_screen(t_screen *screen)
 {

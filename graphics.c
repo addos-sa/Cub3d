@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:14 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/08 15:04:05 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:02:41 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,42 +95,46 @@ void	draw_columm(t_cub3D *game, int i, double height, int tex_x)
 	}
 }
 
-void	put_pixel(t_cub3D *game, double ray_x, double ray_y, int i)
+void	put_pixel(t_cub3D *game, t_ray *ray, int i)
 {
 	double	dist;
 	double	height;
 	int		text_x;
 
-	dist = fix_dist(game, ray_x - game->player->pos->x,
-		ray_y - game->player->pos->y);
+	dist = fix_dist(game, ray->ray_x - game->player->pos->x,
+		ray->ray_y - game->player->pos->y);
 	if (dist <= 0)
 		dist = 0.0001;
 	height = HEIGHT / dist;
-	text_x = (int)((ray_x + ray_y) * 64) % 64;
+	text_x = (int)(ray->wall_hit * 64.00);
 	draw_columm(game, i, height, text_x);
 }
 
 void	draw_line(t_cub3D *game, int i, double start_x)
 {
 	double	dist_traveled;
-	double	cos_angle;
-	double	sin_angle;
-	double	ray_x;
-	double	ray_y;
+	t_ray	*ray;
+	int		side;
 
 	dist_traveled = 0;
-	cos_angle = cos(start_x) * 0.05;
-	sin_angle = sin(start_x) * 0.05;
-	ray_x = game->player->pos->x;
-	ray_y = game->player->pos->y;
-	while (!touch_wall(ray_x, ray_y, game) && dist_traveled < 20.00)
+	ray = ini_ray(start_x, i, game);
+	while (!touch_wall(ray->ray_x,ray->ray_y, game) && dist_traveled < 20.00)
 	{
-		ray_x += cos_angle;
-		ray_y += sin_angle;
+		ray->ray_x += ray->cos_a;
+		ray->ray_y += ray->sin_a;
 		dist_traveled += 0.05;
 	}
-	game->ac_text = wl_text(game, ray_x, ray_y, start_x);
-	put_pixel(game, ray_x, ray_y, i);
+	if (!touch_wall(ray->ray_x - ray->cos_a, ray->ray_y, game))
+		side = 0;
+	else
+		side = 1;
+	if (side == 0)
+		ray->wall_hit = ray->ray_y - floor(ray->ray_y);
+	else
+		ray->wall_hit = ray->ray_x - floor(ray->ray_x);
+	set_wall_texture(game, ray, side);
+	put_pixel(game, ray, i);
+	free(ray);
 }
 
 int	draw_loop(t_cub3D *game)

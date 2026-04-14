@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 08:49:21 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/08 14:48:00 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/14 12:26:52 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,22 @@ mlx_texture_t	*wl_text(t_cub3D *game, double ray_x, double ray_y, double ang)
 		return (game->textures->east_t);
 	return (game->textures->west_t);
 }
+
+void	set_wall_texture(t_cub3D *game, t_ray *ray, int side)
+{
+	if (side == 0)
+	{
+		if (ray->cos_a > 0)
+			game->ac_text = game->textures->east_t;
+		else
+			game->ac_text = game->textures->west_t;
+	}
+	else
+	{
+		if (ray->sin_a > 0)
+			game->ac_text = game->textures->south_t;
+		else
+			game->ac_text = game->textures->north_t;
+	}
+}
+

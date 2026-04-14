@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/14 11:26:09 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/14 12:23:39 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@
 # include "./src/MLX42/include/MLX42/MLX42.h"
 # include "./src/libft/libft.h"
 # include "./src/ft_printf/ft_printf.h"
+
+typedef struct s_DDA
+{
+	double	cos_a;
+	double	sin_a;
+	double	ray_x;
+	double	ray_y;
+	double	wall_hit;
+}	t_ray;
 
 typedef struct s_screen
 {
@@ -81,10 +90,11 @@ typedef struct s_cub3D
 }	t_cub3D;
 
 //INICIALIZATION
-int	ini_game(t_cub3D *game);
-int	ini_player(t_player *player);
-int	ini_texture(t_textures *textures);
-int	ini_screen(t_screen *screen);
+int		ini_game(t_cub3D *game);
+int		ini_player(t_player *player);
+int		ini_texture(t_textures *textures);
+int		ini_screen(t_screen *screen);
+t_ray	*ini_ray(double start_x, int i, t_cub3D *game);
 
 //CLEAN UP
 free_player(t_player *player);
@@ -100,8 +110,9 @@ void	game_loop(void *param);
 int		is_wall(t_cub3D *game, double pos_x, double pos_y);
 
 //MATH
-double	pythagoras(double x, double y);
+double			pythagoras(double x, double y);
 mlx_texture_t	*wl_text(t_cub3D *game, double ray_x, double ray_y, double ang);
+void			set_wall_texture(t_cub3D *game, t_ray *ray, int side);
 
 //GAME
 void	game_loop(void *param);
