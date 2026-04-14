@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:44:26 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/08 15:03:14 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/14 11:26:09 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ typedef struct s_textures
 
 typedef struct s_cub3D
 {
-	t_screen	*screen;
-	t_player	*player;
-	t_textures	*textures;
+	t_screen		*screen;
+	t_player		*player;
+	t_textures		*textures;
 	mlx_texture_t	*ac_text;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	bool		game_running;
-	int 		image_c;
-	char		**map_copy;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	bool			game_running;
+	int 			image_c;
+	char			**map_copy;
 }	t_cub3D;
 
 //INICIALIZATION
