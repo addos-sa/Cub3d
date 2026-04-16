@@ -6,25 +6,25 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:58:28 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/27 12:13:24 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/16 11:53:47 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void	init_map_elements(t_cub3D *game)
-{
-	game->screen->grid = NULL;
-	game->screen->floor_path = NULL;
-	game->screen->ceiling_path = NULL;
-	game->screen->rgb_floor = 0;
-	game->screen->rgb_ceiling = 0;
-	game->screen->n_player = 0;
-	game->textures->n_path = NULL;
-	game->textures->s_path = NULL;
-	game->textures->w_path = NULL;
-	game->textures->e_path = NULL;
-}
+// static void	init_map_elements(t_cub3D *game)
+// {
+// 	game->screen->grid = NULL;
+// 	game->screen->floor_path = NULL;
+// 	game->screen->ceiling_path = NULL;
+// 	game->screen->rgb_floor = 0;
+// 	game->screen->rgb_ceiling = 0;
+// 	game->screen->n_player = 0;
+// 	game->textures->n_path = NULL;
+// 	game->textures->s_path = NULL;
+// 	game->textures->w_path = NULL;
+// 	game->textures->e_path = NULL;
+// }
 
 static int	check_file_type(char *map_path)
 {
@@ -58,7 +58,7 @@ int	parse(t_cub3D *game, char *map_path)
 {
 	int	fd;
 
-	init_map_elements(game);
+	// init_map_elements(game);
 	if (!check_file_type(map_path))
 	{
 		printf("Error\n Map is not a .cub file\n");
@@ -73,4 +73,5 @@ int	parse(t_cub3D *game, char *map_path)
 		return (1);
 	if (validate_parsed_data(game))
 		return (1);
+	return (0);
 }

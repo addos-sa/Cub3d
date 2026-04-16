@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 12:24:54 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/20 12:52:09 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/16 12:04:42 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	validate_texture_files(t_textures *textures)
 {
 	if (!textures)
 		return (1);
-	if (validate_path(textures->n_path))
+	if (validate_texture_path(textures->n_path))
 		return (1);
-	if (validate_path(textures->s_path))
+	if (validate_texture_path(textures->s_path))
 		return (1);
-	if (validate_path(textures->e_path))
+	if (validate_texture_path(textures->e_path))
 		return (1);
-	if (validate_path(textures->w_path))
+	if (validate_texture_path(textures->w_path))
 		return (1);
 	return (0);
 }

@@ -1,53 +1,98 @@
-# --- Variables ---
-NAME		= cub3D
-CC			= cc
-CFLAGS		= -Wall -Werror -Wextra 
+NAME = cub3D
+SAN_NAME = cub3D_san
 
-# --- Directories and Libraries ---
-SRC_DIR		= src
-OBJ_DIR		= obj
-LIBFT_DIR	= libft
-LIBFT		= $(LIBFT_DIR)/libft.a
-INCLUDES	= -I includes -I $(LIBFT_DIR)
-LIBS		= -lreadline
+SRC_DIR = src/
+OBJ_DIR = obj/
+OBJ_SAN_DIR = obj_san/
+INC_DIR = include/
 
-# --- Source Files ---
-# Common source files used by both main executable and tests
-COMMON_SRCS = 
+LIBMLX = lib/MLX42/
+PRINTF_DIR = lib/ft_printf/
+LIBFT_DIR = lib/libft/
 
-# Main executable specific source
-MAIN_SRC_FILE = main.c
+PRINTF = $(PRINTF_DIR)libftprintf.a
+LIBFT = $(LIBFT_DIR)libft.a
 
-# --- Object Files ---
-# Note: No addprefix is used here. Paths are constructed directly.
-COMMON_OBJS	= $(patsubst %.c, $(OBJ_DIR)/%.o, $(COMMON_SRCS))
-MAIN_OBJ	= $(patsubst %.c, $(OBJ_DIR)/%.o, $(MAIN_SRC_FILE))
+INC = -I $(INC_DIR) -I $(PRINTF_DIR) -I $(LIBFT_DIR) -I $(LIBMLX)include
 
-# --- Rules ---
-all: $(NAME)
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -fPIC -g
+SANFLAGS = $(CFLAGS) -fsanitize=address
+RM = rm -f
 
-# Main executable
-$(NAME): $(MAIN_OBJ) $(COMMON_OBJS)
-	@make -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(MAIN_OBJ) $(COMMON_OBJS) -L$(LIBFT_DIR) -lft $(LIBS)
-	@echo "cub3D compiled!"
+LIBS = $(LIBMLX)build/libmlx42.a -ldl -lglfw -pthread -lm
 
-# Generic rule to compile any .c from src to an .o in obj
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "Compiling $<"
+MAIN_SRCS =	$(SRC_DIR)main/main.c \
+			$(SRC_DIR)main/bad.c \
+			$(SRC_DIR)main/inits.c \
+			$(SRC_DIR)main/key_press.c \
+			$(SRC_DIR)main/utils.c
+
+PARSE_SRCS =	$(SRC_DIR)parse/get_map.c \
+				$(SRC_DIR)parse/parse_map.c \
+				$(SRC_DIR)parse/parse_paths.c \
+				$(SRC_DIR)parse/parse_player.c \
+				$(SRC_DIR)parse/parse.c
+
+RAYCAST_SRCS =	$(SRC_DIR)ray_casting/calculations.c \
+				$(SRC_DIR)ray_casting/draw_funtions.c \
+				$(SRC_DIR)ray_casting/graphics.c
+
+VALIDATION_SRCS =	$(SRC_DIR)validation/validation_colours.c \
+					$(SRC_DIR)validation/validation_map.c \
+					$(SRC_DIR)validation/validation_textures.c \
+					$(SRC_DIR)validation/validation.c
+
+ROOT_SRCS = $(SRC_DIR)flood_fill.c
+
+SRCS = $(MAIN_SRCS) $(PARSE_SRCS) $(RAYCAST_SRCS) $(VALIDATION_SRCS) $(ROOT_SRCS)
+
+OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+OBJS_SAN = $(patsubst $(SRC_DIR)%.c,$(OBJ_SAN_DIR)%.o,$(SRCS))
+
+all: libmlx $(LIBFT) $(PRINTF) $(NAME)
+
+sanitize: libmlx $(LIBFT) $(PRINTF) $(SAN_NAME)
+
+libmlx:
+    @cmake $(LIBMLX) -B $(LIBMLX)build && make -C $(LIBMLX)build -j4
+
+$(LIBFT):
+    @make -C $(LIBFT_DIR)
+
+$(PRINTF):
+    @make -C $(PRINTF_DIR)
+
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
+    @$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(LIBS) -o $(NAME)
+    @echo "Compiled $(NAME) successfully!"
+
+$(SAN_NAME): $(OBJS_SAN) $(LIBFT) $(PRINTF)
+    @$(CC) $(SANFLAGS) $(OBJS_SAN) $(LIBFT) $(PRINTF) $(LIBS) -o $(SAN_NAME)
+    @echo "Compiled $(SAN_NAME) with AddressSanitizer successfully!"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c 
+    @mkdir -p $(@D)
+    @$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(OBJ_SAN_DIR)%.o: $(SRC_DIR)%.c 
+    @mkdir -p $(@D)
+    @$(CC) $(SANFLAGS) $(INC) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) clean
-	@echo "Objects cleaned."
+    @$(RM) -r $(OBJ_DIR) $(OBJ_SAN_DIR)
+    @make clean -C $(PRINTF_DIR)
+    @make clean -C $(LIBFT_DIR)
+    @echo "Cleaned object files."
 
 fclean: clean
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean
-	@echo "Full clean complete."
+    @$(RM) $(NAME) $(SAN_NAME)
+    @make fclean -C $(PRINTF_DIR)
+    @make fclean -C $(LIBFT_DIR)
+    @echo "Cleaned everything."
 
 re: fclean all
 
-.PHONY: all clean fclean re test
+resan: fclean sanitize
+
+.PHONY: all sanitize libmlx clean fclean re resan

@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:25:21 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/20 12:47:12 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/16 11:40:26 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	parse_paths(t_cub3D *game, char **file, int *i)
 	}
 	if (!all_paths_found(game))
 	{
-		printf("Error\n Missing path definitions\n");
+		printf("Error\n Missing some or all path definitions\n");
 		return (1);
 	}
 	return (0);

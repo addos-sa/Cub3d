@@ -6,33 +6,24 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:04 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/27 10:59:06 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/16 14:51:47 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
-int	bad_arg(int argc)
+static void free_game(t_cub3D *game, int level)
 {
-	if (argc > 0)
-	{
-		if (argc == 1)
-		{
-			ft_printf("Error\nNo map sent, try './cub3D <map.cub>'\n");
-			return (1);
-		}
-		else
-		{
-			ft_printf("Error\nToo many arguments sent, try \
-				'./cub3D <map.cub>'\n");
-			return (1);
-		}
-	}
-	else
-	{
-		ft_printf("Error\nMap sent is empty\n");
-		return (1);
-	}
+	
+}
+
+static void	close_handler(void *param)
+{
+	t_cub3D	*game;
+
+	game = (t_cub3D *)param;
+	free_game(game, 6);
+	exit(0);
 }
 
 int	main(int argc, char **argv)
@@ -43,12 +34,16 @@ int	main(int argc, char **argv)
 	{
 		if (ft_strlen(argv[1]) == 0)
 			return (bad_arg(0));
-		game = init_game(argv[1]);
+		game = init_game(game);
+		if (parse(game, argv[1]))
+			return (1);
+		game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
+		if (!game->mlx)
+			free_game(game, 1);
 		if (game->game_running)
 		{
-			mlx_key_hook(game->mlx, /*&key_hook*/, &game);
-			mlx_close_hook(game->mlx, /*close_hook*/, &game);
-			mlx_loop_hook(game->mlx, /*&loop_hook*/, &game);
+			mlx_close_hook(game->mlx, &close_handler, &game);
+			mlx_loop_hook(game->mlx, &game_loop, &game);
 			mlx_loop(game->mlx);
 		}
 		if (game->mlx)

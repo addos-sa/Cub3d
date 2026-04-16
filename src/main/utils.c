@@ -6,11 +6,26 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 11:08:45 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/20 13:45:55 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/15 13:07:44 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
+
+t_ray	*create_ray(double start_x, int i, t_cub3D *game)
+{
+	t_ray	*ray;
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		return (NULL);
+	ray->cos_a = cos(start_x) * 0.05;
+	ray->sin_a = sin(start_x) * 0.05;
+	ray->ray_x = game->player->position.x;
+	ray->ray_y = game->player->position.y;
+	ray->wall_hit = 0.00;
+	return (ray);
+}
 
 const char	*skip_spaces(const char *s)
 {
