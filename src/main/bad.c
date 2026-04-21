@@ -6,40 +6,54 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 11:06:08 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/16 12:44:34 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:01:04 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void bad_game()
+int bad_game(int i)
 {
-	
+	printf("Error\nGame memory allocation failed");
+	return (i);
 }
 
-char bad_init(t_cub3D *game, int part)
+static void bad_init2(t_cub3D *game, int part)
 {
-	if (part = 1)
+	if (part == 4)
+	{
+		printf("Error\nImage memory allocation failed");
+		free(game);
+		free(game->screen);
+		free(game->textures);
+		free(game->player);
+	}
+	return ;
+}
+
+void *bad_init(t_cub3D *game, int part)
+{
+	if (part == 1)
 	{
 		printf("Error\nScreen memory allocation failed");
 		free(game);
-		return (NULL);
 	}
-	if (part = 2)
+	if (part == 2)
 	{
 		printf("Error\nTextures memory allocation failed");
 		free(game);
 		free(game->screen);
-		return (NULL);
 	}
-	if (part = 3)
+	if (part == 3)
 	{
 		printf("Error\nPlayer memory allocation failed");
 		free(game);
 		free(game->screen);
 		free(game->textures);
-		return (NULL);
 	}
+	if (part > 3)
+		bad_init2(game, part);
+	return (NULL);
 }
 
 int	bad_arg(int argc)

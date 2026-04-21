@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/16 11:08:32 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:07:30 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,44 +95,65 @@ typedef struct s_cub3D
 
 /*-------------------------main--------------------------*/
 
-t_cub3D		*init_game(t_cub3D *game);
-void		game_loop(void *param);
+int				free_game(t_cub3D *game, int mode);
 
 			/*--------------bad--------------*/
 
-int			bad_arg(int argc);
-char		bad_init(t_cub3D *game, int part);
+int				bad_arg(int argc);
+void			*bad_init(t_cub3D *game, int part);
+int				bad_game(int i);
+
+			/*-------------inits-------------*/
+
+t_cub3D			*init_game(t_cub3D *game);
+void			init_image(t_cub3D *game);
+
+
+			/*-----------key_press-----------*/
+
+void			game_loop(void *param);
 
 			/*-------------utils-------------*/
 
-const char	*skip_spaces(const char *s);
-int	is_empty_line(char *line);
-int	is_space_or_empty(char c);
-t_ray	*create_ray(double start_x, int i, t_cub3D *game);
+char			*skip_spaces(const char *s);
+int				is_empty_line(char *line);
+int				is_space_or_empty(char c);
+t_ray			*create_ray(double start_x, t_cub3D *game);
+int				get_color_value(char *str);
 
 
 /*-------------------------parse-------------------------*/
 
-int			parse(t_cub3D *game, char *map_path);
-int			parse_map(t_cub3D *game, int fd, char *map_path);
-int			parse_paths(t_cub3D *game, char **file, int *i);
-int			parse_player(t_cub3D *game);
-char		**get_map(int fd, char *map_path);
+int				parse(t_cub3D *game, char *map_path);
+int				parse_map(t_cub3D *game, int fd, char *map_path);
+int				parse_paths(t_cub3D *game, char **file, int *i);
+int				parse_player(t_cub3D *game);
+char			**get_map(int fd, char *map_path);
 
 /*----------------------ray_casting----------------------*/
 
-int	draw_loop(t_cub3D *game);
+			/*----------calculations----------*/
+
+double			pythagoras(double x, double y);
+int				is_wall(t_cub3D *game, double pos_x, double pos_y);
+mlx_texture_t	*wl_text(t_cub3D *game, double ray_x, double ray_y, double ang);
+void			set_wall_texture(t_cub3D *game, t_ray *ray, int side);
+
+			/*---------draw_functions---------*/
+
+int				draw_loop(t_cub3D *game);
+
+			/*------------graphics------------*/
+
+double			fix_dist(t_cub3D *game, double delta_x, double delta_y);
+bool			touch_wall(double ray_x, double ray_y, t_cub3D *game);
+int				text_to_color(t_cub3D *game, int tex_x, int tex_y);
 
 /*-----------------------validation----------------------*/
 
-int			validate_colours(t_screen *screen);
-int			validate_map(t_screen *screen);
-int			validate_texture_files(t_textures *textures);
-int			validate_parsed_data(t_cub3D *game);
-
-
-const char	*skip_spaces(const char *s);
-int			is_empty_line(char *line);
-int			is_space_or_empty(char c);
+int				validate_colours(t_screen *screen);
+int				validate_map(t_screen *screen);
+int				validate_texture_files(t_textures *textures);
+int				validate_parsed_data(t_cub3D *game);
 
 #endif

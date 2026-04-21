@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:00:05 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/15 13:13:42 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/17 10:31:44 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	draw_line(t_cub3D *game, int i, double start_x)
 	int		side;
 
 	dist_traveled = 0;
-	ray = create_ray(start_x, i, game);
+	ray = create_ray(start_x, game);
 	while (!touch_wall(ray->ray_x,ray->ray_y, game) && dist_traveled < 20.00)
 	{
 		ray->ray_x += ray->cos_a;

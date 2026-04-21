@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:09:24 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/25 12:04:14 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:03:05 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static int	count_player(t_screen *screen, t_player *player)
 			if (screen->grid[i][j] == 'N' || screen->grid[i][j] == 'S'
 				||screen->grid[i][j] == 'E' || screen->grid[i][j] == 'W')
 			{
-				player->position.x = j;
-				player->position.y = i;
+				player->position.x = j + 0.5;
+				player->position.y = i + 0.5;
 				screen->n_player++;
 			}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 12:52:50 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/20 13:38:19 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/17 10:45:52 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	char_invalid_character(t_screen *screen)
 					screen->grid[i][j] != '\0')
 			{
 				printf("Error\n Invalid character in coordinates (%d, %d)\n",
-					screen->grid[i][j], i, j);
+						i, j);
 				return (1);
 			}
 			j++;

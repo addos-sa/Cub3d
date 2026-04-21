@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:34:10 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/15 12:25:06 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 10:17:09 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	key_pressed(t_cub3D *game)
 	double	p_x;
 	double	p_y;
 
-	speed = 0.05;
+	speed = 0.50;
 	cos_offset = cos(game->player->angle) * speed;
 	sin_offset = sin(game->player->angle) * speed;
 	p_x = game->player->position.x;

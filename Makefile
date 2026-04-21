@@ -26,7 +26,8 @@ MAIN_SRCS =	$(SRC_DIR)main/main.c \
 			$(SRC_DIR)main/bad.c \
 			$(SRC_DIR)main/inits.c \
 			$(SRC_DIR)main/key_press.c \
-			$(SRC_DIR)main/utils.c
+			$(SRC_DIR)main/utils.c \
+			$(SRC_DIR)main/free.c
 
 PARSE_SRCS =	$(SRC_DIR)parse/get_map.c \
 				$(SRC_DIR)parse/parse_map.c \
@@ -43,9 +44,7 @@ VALIDATION_SRCS =	$(SRC_DIR)validation/validation_colours.c \
 					$(SRC_DIR)validation/validation_textures.c \
 					$(SRC_DIR)validation/validation.c
 
-ROOT_SRCS = $(SRC_DIR)flood_fill.c
-
-SRCS = $(MAIN_SRCS) $(PARSE_SRCS) $(RAYCAST_SRCS) $(VALIDATION_SRCS) $(ROOT_SRCS)
+SRCS = $(MAIN_SRCS) $(PARSE_SRCS) $(RAYCAST_SRCS) $(VALIDATION_SRCS)
 
 OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 OBJS_SAN = $(patsubst $(SRC_DIR)%.c,$(OBJ_SAN_DIR)%.o,$(SRCS))
@@ -55,41 +54,41 @@ all: libmlx $(LIBFT) $(PRINTF) $(NAME)
 sanitize: libmlx $(LIBFT) $(PRINTF) $(SAN_NAME)
 
 libmlx:
-    @cmake $(LIBMLX) -B $(LIBMLX)build && make -C $(LIBMLX)build -j4
+	@cmake $(LIBMLX) -B $(LIBMLX)build && make -C $(LIBMLX)build -j4
 
 $(LIBFT):
-    @make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 $(PRINTF):
-    @make -C $(PRINTF_DIR)
+	@make -C $(PRINTF_DIR)
 
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF)
-    @$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(LIBS) -o $(NAME)
-    @echo "Compiled $(NAME) successfully!"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(LIBS) -o $(NAME)
+	@echo "Compiled $(NAME) successfully!"
 
 $(SAN_NAME): $(OBJS_SAN) $(LIBFT) $(PRINTF)
-    @$(CC) $(SANFLAGS) $(OBJS_SAN) $(LIBFT) $(PRINTF) $(LIBS) -o $(SAN_NAME)
-    @echo "Compiled $(SAN_NAME) with AddressSanitizer successfully!"
+	@$(CC) $(SANFLAGS) $(OBJS_SAN) $(LIBFT) $(PRINTF) $(LIBS) -o $(SAN_NAME)
+	@echo "Compiled $(SAN_NAME) with AddressSanitizer successfully!"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c 
-    @mkdir -p $(@D)
-    @$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(OBJ_SAN_DIR)%.o: $(SRC_DIR)%.c 
-    @mkdir -p $(@D)
-    @$(CC) $(SANFLAGS) $(INC) -c $< -o $@
+	@mkdir -p $(@D)
+	@$(CC) $(SANFLAGS) $(INC) -c $< -o $@
 
 clean:
-    @$(RM) -r $(OBJ_DIR) $(OBJ_SAN_DIR)
-    @make clean -C $(PRINTF_DIR)
-    @make clean -C $(LIBFT_DIR)
-    @echo "Cleaned object files."
+	@$(RM) -r $(OBJ_DIR) $(OBJ_SAN_DIR)
+	@make clean -C $(PRINTF_DIR)
+	@make clean -C $(LIBFT_DIR)
+	@echo "Cleaned object files."
 
 fclean: clean
-    @$(RM) $(NAME) $(SAN_NAME)
-    @make fclean -C $(PRINTF_DIR)
-    @make fclean -C $(LIBFT_DIR)
-    @echo "Cleaned everything."
+	@$(RM) $(NAME) $(SAN_NAME)
+	@make fclean -C $(PRINTF_DIR)
+	@make fclean -C $(LIBFT_DIR)
+	@echo "Cleaned everything."
 
 re: fclean all
 

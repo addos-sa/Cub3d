@@ -6,13 +6,24 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:47:37 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/16 11:42:52 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:03:49 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void	ini_player(t_cub3D *game)
+void init_image(t_cub3D *game)
+{
+	if (!game)
+		return ;
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+    if (!game->img)
+        return ((void)bad_init(game, 4));
+    mlx_image_to_window(game->mlx, game->img, 0, 0);
+	return ;
+}
+
+static void	init_player(t_cub3D *game)
 {
 	if (!game || !game->player)
 		return ;
@@ -57,14 +68,9 @@ static void init_screen(t_cub3D *game)
 
 t_cub3D	*init_game(t_cub3D *game)
 {
-	game = (t_cub3D*)malloc(sizeof(t_cub3D));
-	if (!game)
-	{
-		printf("Error\nGame memory allocation failed");
-		return (NULL);
-	}
 	game->game_running = false;
 	game->mlx = NULL;
+	game->img = NULL;
 	game->screen = (t_screen*)malloc(sizeof(t_screen));
 	if (!game->screen)
 		return (bad_init(game, 1));
@@ -76,6 +82,6 @@ t_cub3D	*init_game(t_cub3D *game)
 	game->player = (t_player*)malloc(sizeof(t_player));
 	if (!game->player)
 		return (bad_init(game, 3));
-	ini_player(game);
+	init_player(game);
 	return (game);
 }

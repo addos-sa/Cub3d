@@ -6,13 +6,35 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 11:08:45 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/15 13:07:44 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:07:16 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-t_ray	*create_ray(double start_x, int i, t_cub3D *game)
+int get_color_value(char *str)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	while (*str == ' ' || *str == '\t')
+		str++;
+	r = ft_atoi(str);
+	while (*str && ft_isdigit(*str))
+		str++;
+	if (*str == ',')
+		str++;
+	g = ft_atoi(str);
+	while (*str && ft_isdigit(*str))
+		str++;
+	if (*str == ',')
+		str++;
+	b = ft_atoi(str);
+	return ((r << 16) | (g << 8) | b);
+}
+
+t_ray	*create_ray(double start_x, t_cub3D *game)
 {
 	t_ray	*ray;
 
@@ -27,18 +49,18 @@ t_ray	*create_ray(double start_x, int i, t_cub3D *game)
 	return (ray);
 }
 
-const char	*skip_spaces(const char *s)
+char	*skip_spaces(const char *s)
 {
 	if (!s)
 		return (NULL);
 	while (*s && (*s == ' ' || *s == '\t'))
 		s++;
-	return (s);
+	return ((char *)s);
 }
 
 int	is_empty_line(char *line)
 {
-	char	*trimmed;
+	const char	*trimmed;
 
 	trimmed = skip_spaces(line);
 	return (*trimmed == '\0' || *trimmed == '\n');

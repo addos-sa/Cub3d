@@ -6,25 +6,38 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:00:00 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/19 11:08:03 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/20 17:19:29 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static char	*skip_spaces(char *line)
+static void calculate_limits(t_cub3D *game)
 {
-	while (*line == ' ' || *line == '\t')
-		line++;
-	return (line);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->screen->grid[i])
+	{
+		j = 0;
+		while (game->screen->grid[i][j])
+		{
+			j++;
+		}
+		if (j > game->screen->width)
+			game->screen->width = j;
+		i++;
+	}
+	game->screen->height = i;
 }
 
-static void	free_file(char **file)
+static int	free_file(char **file, int type)
 {
 	int	i;
 
 	if (!file)
-		return ;
+		return (1);
 	i = 0;
 	while (file[i])
 	{
@@ -32,6 +45,11 @@ static void	free_file(char **file)
 		i++;
 	}
 	free(file);
+	if (type == 2)
+		printf("Error\n No map found\n");
+	else if (type == 1 || type == 2)
+		return (1);
+	return (0);
 }
 
 static char	**extract_grid(char **file, int start)
@@ -68,21 +86,15 @@ int	parse_map(t_cub3D *game, int fd, char *map_path)
 		return (1);
 	i = 0;
 	if (parse_paths(game, file, &i) != 0)
-	{
-		free_file(file);
-		return (1);
-	}
+		return (free_file(file, 1));
 	while (file[i] && is_empty_line(file[i]))
 		i++;
 	if (!file[i])
-	{
-		printf("Error\n No map found\n");
-		free_file(file);
-		return (1);
-	}
+		return (free_file(file, 2));
 	game->screen->grid = extract_grid(file, i);
-	free_file(file);
+	free_file(file, 0);
 	if (!game->screen->grid)
 		return (1);
+	calculate_limits(game);
 	return (0);
 }
