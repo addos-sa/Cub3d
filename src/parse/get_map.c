@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:55:48 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/11 13:11:30 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 12:53:56 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ static char	**get_line(char **map, int fd, int line_count)
 		map[c] = ft_strdup(line);
 		free(line);
 		c++;
+	}
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
 	}
 	map[c] = NULL;
 	return (map);

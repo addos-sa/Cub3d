@@ -6,21 +6,20 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:47:37 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/20 18:03:49 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:40:25 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void init_image(t_cub3D *game)
+static void init_paths(t_cub3D *game)
 {
-	if (!game)
-		return ;
-	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-    if (!game->img)
-        return ((void)bad_init(game, 4));
-    mlx_image_to_window(game->mlx, game->img, 0, 0);
-	return ;
+	game->paths->e_path = NULL;
+	game->paths->n_path = NULL;
+	game->paths->s_path = NULL;
+	game->paths->w_path = NULL;
+	game->paths->floor_path = NULL;
+	game->paths->ceiling_path = NULL;
 }
 
 static void	init_player(t_cub3D *game)
@@ -42,10 +41,6 @@ static void init_textures(t_cub3D *game)
 {
 	if (!game || !game->textures)
 		return ;
-	game->textures->e_path = NULL;
-	game->textures->n_path = NULL;
-	game->textures->s_path = NULL;
-	game->textures->w_path = NULL;
 	game->textures->east_t = NULL;
 	game->textures->north_t = NULL;
 	game->textures->south_t = NULL;
@@ -57,8 +52,6 @@ static void init_screen(t_cub3D *game)
 	if (!game || !game->screen)
 		return ;
 	game->screen->grid = NULL;
-	game->screen->floor_path = NULL;
-	game->screen->ceiling_path = NULL;
 	game->screen->rgb_floor = 0;
 	game->screen->rgb_ceiling = 0;
 	game->screen->n_player = 0;
@@ -83,5 +76,9 @@ t_cub3D	*init_game(t_cub3D *game)
 	if (!game->player)
 		return (bad_init(game, 3));
 	init_player(game);
+	game->paths = (t_paths*)malloc(sizeof(t_paths));
+	if (!game->paths)
+		return (bad_init(game, 4));
+	init_paths(game);
 	return (game);
 }

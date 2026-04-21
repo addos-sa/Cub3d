@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 10:33:05 by frasanch          #+#    #+#             */
-/*   Updated: 2026/03/20 12:06:41 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:42:44 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,26 @@ static int	validate_colour_path(const char *str)
 	return (0);
 }
 
-int validate_colours(t_screen *screen)
+int validate_colours(t_paths *paths)
 {
-	if (!screen)
+	if (!paths)
 		return (1);
-	if (!screen->floor_path)
+	if (!paths->floor_path)
 	{
 		ft_putendl_fd("Error\nMissing Floor color definition path", 2);
 		return (1);
 	}
-	if (!screen->ceiling_path)
+	if (!paths->ceiling_path)
 	{
 		ft_putendl_fd("Error\nMissing Ceiling color definition path", 2);
 		return (1);
 	}
-	if (validate_colour_path(screen->floor_path))
+	if (validate_colour_path(paths->floor_path))
 	{
 		ft_putendl_fd("Error\nInvalid Floor string must be RGB", 2);
 		return (1);
 	}
-	if (validate_colour_path(screen->ceiling_path))
+	if (validate_colour_path(paths->ceiling_path))
 	{
 		ft_putendl_fd("Error\nInvalid Ceiling string must be RGB", 2);
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 11:06:08 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/20 18:01:04 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:39:50 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,20 @@ static void bad_init2(t_cub3D *game, int part)
 {
 	if (part == 4)
 	{
+		printf("Error\nPath memory allocation failed");
+		free(game);
+		free(game->screen);
+		free(game->textures);
+		free(game->player);
+	}
+	if (part == 5)
+	{
 		printf("Error\nImage memory allocation failed");
 		free(game);
 		free(game->screen);
 		free(game->textures);
 		free(game->player);
+		free(game->paths);
 	}
 	return ;
 }

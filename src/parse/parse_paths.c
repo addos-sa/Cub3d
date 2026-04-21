@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:25:21 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/17 10:59:01 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:33:39 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	all_paths_found(t_cub3D *game)
 {
-	return (game->textures->n_path && game->textures->s_path
-		&& game->textures->w_path && game->textures->e_path
-		&& game->screen->floor_path && game->screen->ceiling_path);
+	return (game->paths->n_path && game->paths->s_path
+		&& game->paths->w_path && game->paths->e_path
+		&& game->paths->floor_path && game->paths->ceiling_path);
 }
 
 static int	parse_path_line(t_cub3D *game, char *line)
@@ -25,17 +25,17 @@ static int	parse_path_line(t_cub3D *game, char *line)
 
 	trim = skip_spaces(line);
 	if (ft_strncmp(trim, "NO ", 3) == 0)
-		game->textures->n_path = ft_strtrim(trim + 3, " \t\n");
+		game->paths->n_path = ft_strtrim(trim + 3, " \t\n");
 	else if (ft_strncmp(trim, "SO ", 3) == 0)
-		game->textures->s_path = ft_strtrim(trim + 3, " \t\n");
+		game->paths->s_path = ft_strtrim(trim + 3, " \t\n");
 	else if (ft_strncmp(trim, "WE ", 3) == 0)
-		game->textures->w_path = ft_strtrim(trim + 3, " \t\n");
+		game->paths->w_path = ft_strtrim(trim + 3, " \t\n");
 	else if (ft_strncmp(trim, "EA ", 3) == 0)
-		game->textures->e_path = ft_strtrim(trim + 3, " \t\n");
+		game->paths->e_path = ft_strtrim(trim + 3, " \t\n");
 	else if (ft_strncmp(trim, "F ", 2) == 0)
-		game->screen->floor_path = ft_strtrim(trim + 2, " \t\n");
+		game->paths->floor_path = ft_strtrim(trim + 2, " \t\n");
 	else if (ft_strncmp(trim, "C ", 2) == 0)
-		game->screen->ceiling_path = ft_strtrim(trim + 2, " \t\n");
+		game->paths->ceiling_path = ft_strtrim(trim + 2, " \t\n");
 	else
 		return (0);
 	return (1);

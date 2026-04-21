@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:07:30 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:44:14 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,61 +30,65 @@
 
 typedef struct s_ray
 {
-	double	cos_a;
-	double	sin_a;
-	double	ray_x;
-	double	ray_y;
-	double	wall_hit;
+	double			cos_a;
+	double			sin_a;
+	double			ray_x;
+	double			ray_y;
+	double			wall_hit;
 }	t_ray;
 
 typedef struct s_screen
 {
-	char    **grid;
-	char	*floor_path;
-	char	*ceiling_path;
-    int     rgb_floor;
-	int		rgb_ceiling;
-	int		n_player;
-	int		height;
-	int		width;
+	char    		**grid;
+    int     		rgb_floor;
+	int				rgb_ceiling;
+	int				n_player;
+	int				height;
+	int				width;
 }	t_screen;
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
+	double			x;
+	double			y;
 }	t_point;
-
-typedef struct s_player
-{
-	t_point	position;
-	double	angle;
-	bool	k_up;
-	bool	k_down;
-	bool	k_right;
-	bool	k_left;
-	bool	r_left;
-	bool	r_right;
-}	t_player;
-
 
 typedef struct s_textures
 {
-	char			*e_path;
-	char			*n_path;
-	char			*s_path;
-	char			*w_path;
 	mlx_texture_t	*east_t;
 	mlx_texture_t	*north_t;
 	mlx_texture_t	*south_t;
 	mlx_texture_t	*west_t;
 }	t_textures;
 
+typedef struct s_player
+{
+	t_point			position;
+	double			angle;
+	bool			k_up;
+	bool			k_down;
+	bool			k_right;
+	bool			k_left;
+	bool			r_left;
+	bool			r_right;
+}	t_player;
+
+typedef struct s_paths
+{
+	char			*e_path;
+	char			*n_path;
+	char			*s_path;
+	char			*w_path;
+	char			*floor_path;
+	char			*ceiling_path;
+}	t_paths;
+
 typedef struct s_cub3D
 {
 	t_screen		*screen;
-	t_player		*player;
 	t_textures		*textures;
+	t_player		*player;
+	t_paths			*paths;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	*ac_text;
@@ -106,8 +110,6 @@ int				bad_game(int i);
 			/*-------------inits-------------*/
 
 t_cub3D			*init_game(t_cub3D *game);
-void			init_image(t_cub3D *game);
-
 
 			/*-----------key_press-----------*/
 
@@ -120,6 +122,7 @@ int				is_empty_line(char *line);
 int				is_space_or_empty(char c);
 t_ray			*create_ray(double start_x, t_cub3D *game);
 int				get_color_value(char *str);
+void			init_image(t_cub3D *game);
 
 
 /*-------------------------parse-------------------------*/
@@ -151,9 +154,9 @@ int				text_to_color(t_cub3D *game, int tex_x, int tex_y);
 
 /*-----------------------validation----------------------*/
 
-int				validate_colours(t_screen *screen);
+int				validate_colours(t_paths *paths);
 int				validate_map(t_screen *screen);
-int				validate_texture_files(t_textures *textures);
+int				validate_texture_files(t_paths *paths);
 int				validate_parsed_data(t_cub3D *game);
 
 #endif

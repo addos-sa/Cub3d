@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:58:28 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:09:57 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:43:24 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static int	check_file_existence(char *map_path)
 
 static int set_textures(t_cub3D *game)
 {
-	game->textures->north_t = mlx_load_png(game->textures->n_path);
-	game->textures->south_t = mlx_load_png(game->textures->s_path);
-	game->textures->west_t = mlx_load_png(game->textures->w_path);
-	game->textures->east_t = mlx_load_png(game->textures->e_path);
+	game->textures->north_t = mlx_load_png(game->paths->n_path);
+	game->textures->south_t = mlx_load_png(game->paths->s_path);
+	game->textures->west_t = mlx_load_png(game->paths->w_path);
+	game->textures->east_t = mlx_load_png(game->paths->e_path);
 
 	if (!game->textures->north_t || !game->textures->south_t ||
 		!game->textures->west_t || !game->textures->east_t)
@@ -58,8 +58,8 @@ static int set_textures(t_cub3D *game)
 
 static void set_parsed_colors(t_cub3D *game)
 {
-	game->screen->rgb_floor = get_color_value(game->screen->floor_path);
-	game->screen->rgb_ceiling = get_color_value(game->screen->ceiling_path);
+	game->screen->rgb_floor = get_color_value(game->paths->floor_path);
+	game->screen->rgb_ceiling = get_color_value(game->paths->ceiling_path);
 	return ;
 }
 
