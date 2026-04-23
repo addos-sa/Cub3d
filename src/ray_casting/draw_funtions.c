@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:00:05 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/23 11:22:18 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/23 11:48:42 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	put_pixel(t_cub3D *game, t_ray *ray, int i, double dist)
 {
 	double	height;
 	int		text_x;
-	double	dist;
 
 	if (dist <= 0)
 		dist = 0.0001;
@@ -69,38 +68,32 @@ static void	put_pixel(t_cub3D *game, t_ray *ray, int i, double dist)
 static void	draw_line(t_cub3D *game, int i, double start_x)
 {
 	t_ray	*ray;
-	t_DDA	*info;
+	t_DDA	info;
 
 	ray = create_ray(start_x, game);
-	info->map_x = (int)game->player->position.x;
-	info->map_y = (int)game->player->position.y;
-	info->delta_dist_x = fabs(1.0 / ray->cos_a);
-	info->delta_dist_y = fabs(1.0 / ray->sin_a);
-	calculate_for_DDA(game, ray, info);
-	while (info->hit == 0)
+	info.map_x = (int)game->player->position.x;
+	info.map_y = (int)game->player->position.y;
+	info.delta_dist_x = fabs(1.0 / ray->cos_a);
+	info.delta_dist_y = fabs(1.0 / ray->sin_a);
+	calculate_for_DDA(game, ray, &info);
+	wall_loop(game, &info);
+	if (info.side == 0)
 	{
-		if (info->side_dist_x < info->side_dist_y)
-		{
-			info->side_dist_x += info->delta_dist_x;
-			info->map_x += info->step_x;
-			info->side = 0;
-		}
-		else
-		{
-			info->side_dist_y += info->delta_dist_y;
-			info->map_y += info->step_y;
-			info->side = 1;
-		}
-		if (touch_wall(info->map_x, info->map_y, game))
-			info->hit = 1;
+		info.wall_dst = (info.side_dist_x - info.delta_dist_x);
+		ray->wall_hit = game->player->position.y + info.wall_dst * ray->sin_a;
 	}
-	if (info->side == 0)
+	else
 	{
-		info->wall_dist = (info->side_dist_x - info->delta_dist_x);
-		ray
+		info.wall_dst = (info.side_dist_y - info.delta_dist_y);
+		ray->wall_hit = game->player->position.x + info.wall_dst * ray->cos_a;
 	}
+	ray->wall_hit -= floor(ray->wall_hit);
+	set_wall_texture(game, ray, info.side);
+	put_pixel(game, ray, i, info.wall_dst *
+		cos(game->player->angle - start_x));
+	free(ray);
 }
-//put_pixel(game, ray, i, wall_dist * cos(game->player->angle - ray_angle));
+
 int	draw_loop(t_cub3D *game)
 {
 	int			i;

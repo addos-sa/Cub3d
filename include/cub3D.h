@@ -6,7 +6,7 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/23 11:17:12 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/23 11:48:22 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef	struct s_DDA
 	double	delta_dist_y;
 	double	side_dist_x;
 	double	side_dist_y;
-	double	wall_dist;
+	double	wall_dst;
 	int		map_x;
 	int		map_y;
 	int		step_x;
@@ -156,6 +156,7 @@ int				is_wall(t_cub3D *game, double pos_x, double pos_y);
 mlx_texture_t	*wl_text(t_cub3D *game, double ray_x, double ray_y, double ang);
 void			set_wall_texture(t_cub3D *game, t_ray *ray, int side);
 void			calculate_for_DDA(t_cub3D *game, t_ray *ray, t_DDA *info);
+void			wall_loop(t_cub3D *game, t_DDA * info);
 
 			/*---------draw_functions---------*/
 

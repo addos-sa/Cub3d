@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 11:08:45 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:07:16 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/23 11:53:02 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ t_ray	*create_ray(double start_x, t_cub3D *game)
 	ray = malloc(sizeof(t_ray));
 	if (!ray)
 		return (NULL);
-	ray->cos_a = cos(start_x) * 0.05;
-	ray->sin_a = sin(start_x) * 0.05;
+	ray->cos_a = cos(start_x);
+	ray->sin_a = sin(start_x);
 	ray->ray_x = game->player->position.x;
 	ray->ray_y = game->player->position.y;
 	ray->wall_hit = 0.00;
