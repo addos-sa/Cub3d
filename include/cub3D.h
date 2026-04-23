@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:44:14 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/23 10:36:42 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ char			*skip_spaces(const char *s);
 int				is_empty_line(char *line);
 int				is_space_or_empty(char c);
 t_ray			*create_ray(double start_x, t_cub3D *game);
-int				get_color_value(char *str);
 void			init_image(t_cub3D *game);
+int				get_color_hex(char *rgb_str);
 
 
 /*-------------------------parse-------------------------*/

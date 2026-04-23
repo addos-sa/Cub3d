@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:58:28 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:43:24 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/23 10:36:27 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static int set_textures(t_cub3D *game)
 
 static void set_parsed_colors(t_cub3D *game)
 {
-	game->screen->rgb_floor = get_color_value(game->paths->floor_path);
-	game->screen->rgb_ceiling = get_color_value(game->paths->ceiling_path);
+	game->screen->rgb_floor = get_color_hex(game->paths->floor_path);
+	game->screen->rgb_ceiling = get_color_hex(game->paths->ceiling_path);
 	return ;
 }
 

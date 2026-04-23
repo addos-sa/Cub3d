@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:00:05 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/17 10:31:44 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/23 11:18:43 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	pixeling(int x, int y, int color, t_cub3D *game)
 	game->img->pixels[index + 3] = 0xFF; 
 }
 
-static void	draw_columm(t_cub3D *game, int i, double height, int tex_x)
+static void	draw_column(t_cub3D *game, int i, double height, int tex_x)
 {
 	int		y;
 	int		end;
@@ -65,7 +65,7 @@ static void	put_pixel(t_cub3D *game, t_ray *ray, int i)
 		dist = 0.0001;
 	height = HEIGHT / dist;
 	text_x = (int)(ray->wall_hit * 64.00);
-	draw_columm(game, i, height, text_x);
+	draw_column(game, i, height, text_x);
 }
 
 static void	draw_line(t_cub3D *game, int i, double start_x)
