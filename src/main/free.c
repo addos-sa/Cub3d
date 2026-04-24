@@ -6,11 +6,31 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 11:24:35 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 12:47:42 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/24 11:23:48 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+int	free_file(char **file, int type)
+{
+	int	i;
+
+	if (!file)
+		return (1);
+	i = 0;
+	while (file[i])
+	{
+		free(file[i]);
+		i++;
+	}
+	free(file);
+	if (type == 2)
+		printf("Error\n No map found\n");
+	else if (type == 1 || type == 2)
+		return (1);
+	return (0);
+}
 
 static void free_paths(t_cub3D *game)
 {

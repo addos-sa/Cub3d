@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:00:05 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/23 11:18:43 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:35:07 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	pixeling(int x, int y, int color, t_cub3D *game)
 	game->img->pixels[index + 3] = 0xFF; 
 }
 
-static void	draw_column(t_cub3D *game, int i, double height, int tex_x)
+static void	draw_columm(t_cub3D *game, int i, double height, int tex_x)
 {
 	int		y;
 	int		end;
@@ -53,45 +53,44 @@ static void	draw_column(t_cub3D *game, int i, double height, int tex_x)
 	}
 }
 
-static void	put_pixel(t_cub3D *game, t_ray *ray, int i)
+static void	put_pixel(t_cub3D *game, t_ray *ray, int i, double dist)
 {
-	double	dist;
 	double	height;
 	int		text_x;
 
-	dist = fix_dist(game, ray->ray_x - game->player->position.x,
-		ray->ray_y - game->player->position.y);
 	if (dist <= 0)
 		dist = 0.0001;
 	height = HEIGHT / dist;
 	text_x = (int)(ray->wall_hit * 64.00);
-	draw_column(game, i, height, text_x);
+	draw_columm(game, i, height, text_x);
 }
 
 static void	draw_line(t_cub3D *game, int i, double start_x)
 {
-	double	dist_traveled;
 	t_ray	*ray;
-	int		side;
+	t_DDA	info;
 
-	dist_traveled = 0;
 	ray = create_ray(start_x, game);
-	while (!touch_wall(ray->ray_x,ray->ray_y, game) && dist_traveled < 20.00)
+	info.map_x = (int)game->player->position.x;
+	info.map_y = (int)game->player->position.y;
+	info.delta_dist_x = fabs(1.0 / ray->cos_a);
+	info.delta_dist_y = fabs(1.0 / ray->sin_a);
+	calculate_for_DDA(game, ray, &info);
+	wall_loop(game, &info);
+	if (info.side == 0)
 	{
-		ray->ray_x += ray->cos_a;
-		ray->ray_y += ray->sin_a;
-		dist_traveled += 0.05;
+		info.wall_dst = (info.side_dist_x - info.delta_dist_x);
+		ray->wall_hit = game->player->position.y + info.wall_dst * ray->sin_a;
 	}
-	if (!touch_wall(ray->ray_x - ray->cos_a, ray->ray_y, game))
-		side = 0;
 	else
-		side = 1;
-	if (side == 0)
-		ray->wall_hit = ray->ray_y - floor(ray->ray_y);
-	else
-		ray->wall_hit = ray->ray_x - floor(ray->ray_x);
-	set_wall_texture(game, ray, side);
-	put_pixel(game, ray, i);
+	{
+		info.wall_dst = (info.side_dist_y - info.delta_dist_y);
+		ray->wall_hit = game->player->position.x + info.wall_dst * ray->cos_a;
+	}
+	ray->wall_hit -= floor(ray->wall_hit);
+	set_wall_texture(game, ray, info.side);
+	put_pixel(game, ray, i, info.wall_dst *
+		cos(game->player->angle - start_x));
 	free(ray);
 }
 
@@ -104,12 +103,12 @@ int	draw_loop(t_cub3D *game)
 	i = 0;
 	fraction = (PI / 3) / WIDTH;
 	start_x = game->player->angle - (PI / 6);
+	draw_back(game);
 	while(i < WIDTH)
 	{
 		draw_line(game, i, start_x);
 		start_x += fraction;
 		i++;
 	}
-	//puede que haya que hacer algo mas
 	return (0);
 }

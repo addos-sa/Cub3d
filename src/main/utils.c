@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 11:08:45 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/23 10:55:43 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:36:44 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_ray	*create_ray(double start_x, t_cub3D *game)
 	ray = malloc(sizeof(t_ray));
 	if (!ray)
 		return (NULL);
-	ray->cos_a = cos(start_x) * 0.05;
-	ray->sin_a = sin(start_x) * 0.05;
+	ray->cos_a = cos(start_x);
+	ray->sin_a = sin(start_x);
 	ray->ray_x = game->player->position.x;
 	ray->ray_y = game->player->position.y;
 	ray->wall_hit = 0.00;

@@ -1,5 +1,5 @@
-C 255,255,250
-F 111,111,111
+C 109,148,245
+F 173,10,30
 
 NO ./textures/img_no.png
 SO ./textures/img_so.png

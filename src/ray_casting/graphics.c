@@ -3,23 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:14 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/22 13:38:25 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/23 11:17:01 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-double	fix_dist(t_cub3D *game, double delta_x, double delta_y)
+void	draw_back(t_cub3D *game)
 {
-	double	angle;
-	double	fix_dist;
+	uint32_t	x;
+	uint32_t	y;
 
-	angle = atan2(delta_y, delta_x) - game->player->angle;
-	fix_dist = pythagoras(delta_x, delta_y) * cos(angle);
-	return (fix_dist);
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (y < (HEIGHT / 2))
+				mlx_put_pixel(game->img, x, y, game->screen->rgb_ceiling);
+			else
+				mlx_put_pixel(game->img, x, y, game->screen->rgb_floor);
+			x++;
+		}
+		y++;
+	}
 }
 
 bool	touch_wall(double ray_x, double ray_y, t_cub3D *game)
