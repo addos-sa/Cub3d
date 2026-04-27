@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:04 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 13:07:13 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 10:58:35 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		return (bad_arg(argc));
 	if (ft_strlen(argv[1]) == 0)
 		return (bad_arg(0));
-	game = (t_cub3D*)malloc(sizeof(t_cub3D));
+	game = (t_cub3D *)malloc(sizeof(t_cub3D));
 	if (!game)
 		return (bad_game(1));
 	game = init_game(game);

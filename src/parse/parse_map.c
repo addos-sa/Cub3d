@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:00:00 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/24 11:24:50 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 11:06:53 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	pad_grid(t_cub3D *game)
 	return (0);
 }
 
-static void calculate_limits(t_cub3D *game)
+static void	calculate_limits(t_cub3D *game)
 {
 	int	i;
 	int	j;

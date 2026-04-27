@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:00:05 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/23 12:35:07 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 11:10:42 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	pixeling(int x, int y, int color, t_cub3D *game)
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
 	index = (y * game->img->width + x) * 4;
-	game->img->pixels[index] = (color >> 16) & 0xFF; // R
-	game->img->pixels[index + 1] = (color >> 8)  & 0xFF; // G
-	game->img->pixels[index + 2] = color & 0xFF; // B
-	game->img->pixels[index + 3] = 0xFF; 
+	game->img->pixels[index] = (color >> 16) & 0xFF;
+	game->img->pixels[index + 1] = (color >> 8) & 0xFF;
+	game->img->pixels[index + 2] = color & 0xFF;
+	game->img->pixels[index + 3] = 0xFF;
 }
 
 static void	draw_columm(t_cub3D *game, int i, double height, int tex_x)
@@ -89,8 +89,8 @@ static void	draw_line(t_cub3D *game, int i, double start_x)
 	}
 	ray->wall_hit -= floor(ray->wall_hit);
 	set_wall_texture(game, ray, info.side);
-	put_pixel(game, ray, i, info.wall_dst *
-		cos(game->player->angle - start_x));
+	put_pixel(game, ray, i, info.wall_dst
+		* cos(game->player->angle - start_x));
 	free(ray);
 }
 
@@ -104,7 +104,7 @@ int	draw_loop(t_cub3D *game)
 	fraction = (PI / 3) / WIDTH;
 	start_x = game->player->angle - (PI / 6);
 	draw_back(game);
-	while(i < WIDTH)
+	while (i < WIDTH)
 	{
 		draw_line(game, i, start_x);
 		start_x += fraction;

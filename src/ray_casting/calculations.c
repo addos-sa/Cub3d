@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 08:49:21 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/23 11:48:18 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/04/27 11:09:31 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	calculate_for_DDA(t_cub3D *game, t_ray *ray, t_DDA *info)
+void	calculate_for_dda(t_cub3D *game, t_ray *ray, t_DDA *info)
 {
 	info->hit = 0;
 	if (ray->cos_a < 0)
 	{
 		info->step_x = -1;
 		info->side_dist_x = (game->player->position.x - info->map_x)
-		* info->delta_dist_x;
+			* info->delta_dist_x;
 	}
 	else
 	{
 		info->step_x = 1;
 		info->side_dist_x = (info->map_x + 1.0 - game->player->position.x)
-		* info->delta_dist_x;
+			* info->delta_dist_x;
 	}
 	if (ray->sin_a < 0)
 	{
 		info->step_y = -1;
 		info->side_dist_y = (game->player->position.y - info->map_y)
-		* info->delta_dist_y;
+			* info->delta_dist_y;
 	}
 	else
 	{
 		info->step_y = 1;
 		info->side_dist_y = (info->map_y + 1.0 - game->player->position.y)
-		* info->delta_dist_y;
+			* info->delta_dist_y;
 	}
 }
 
@@ -55,7 +55,7 @@ int	is_wall(t_cub3D *game, double pos_x, double pos_y)
 	return (0);
 }
 
-void	wall_loop(t_cub3D *game, t_DDA * info)
+void	wall_loop(t_cub3D *game, t_DDA *info)
 {
 	while (info->hit == 0)
 	{
@@ -111,4 +111,3 @@ void	set_wall_texture(t_cub3D *game, t_ray *ray, int side)
 			game->ac_text = game->textures->north_t;
 	}
 }
-

@@ -27,10 +27,10 @@ MAIN_SRCS =	$(SRC_DIR)main/main.c \
 			$(SRC_DIR)main/inits.c \
 			$(SRC_DIR)main/key_press.c \
 			$(SRC_DIR)main/utils.c \
-			$(SRC_DIR)main/utils2.c \
 			$(SRC_DIR)main/free.c
 
-PARSE_SRCS =	$(SRC_DIR)parse/get_map.c \
+PARSE_SRCS =	$(SRC_DIR)parse/get_color.c \
+				$(SRC_DIR)parse/get_map.c \
 				$(SRC_DIR)parse/parse_map.c \
 				$(SRC_DIR)parse/parse_paths.c \
 				$(SRC_DIR)parse/parse_player.c \

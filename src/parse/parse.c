@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:58:28 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/23 10:36:27 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 11:05:39 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@ static int	check_file_existence(char *map_path)
 	return (fd);
 }
 
-static int set_textures(t_cub3D *game)
+static int	set_textures(t_cub3D *game)
 {
 	game->textures->north_t = mlx_load_png(game->paths->n_path);
 	game->textures->south_t = mlx_load_png(game->paths->s_path);
 	game->textures->west_t = mlx_load_png(game->paths->w_path);
 	game->textures->east_t = mlx_load_png(game->paths->e_path);
-
-	if (!game->textures->north_t || !game->textures->south_t ||
-		!game->textures->west_t || !game->textures->east_t)
+	if (!game->textures->north_t || !game->textures->south_t
+		|| !game->textures->west_t || !game->textures->east_t)
 	{
 		printf("Error\nFailed to load textures\n");
 		return (1);
@@ -56,7 +55,7 @@ static int set_textures(t_cub3D *game)
 	return (0);
 }
 
-static void set_parsed_colors(t_cub3D *game)
+static void	set_parsed_colors(t_cub3D *game)
 {
 	game->screen->rgb_floor = get_color_hex(game->paths->floor_path);
 	game->screen->rgb_ceiling = get_color_hex(game->paths->ceiling_path);

@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 10:33:05 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:42:44 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 11:11:49 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	validate_colour_path(const char *str)
 	return (0);
 }
 
-int validate_colours(t_paths *paths)
+int	validate_colours(t_paths *paths)
 {
 	if (!paths)
 		return (1);

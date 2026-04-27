@@ -6,19 +6,19 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 11:06:08 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:39:50 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 10:55:50 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-int bad_game(int i)
+int	bad_game(int i)
 {
 	printf("Error\nGame memory allocation failed");
 	return (i);
 }
 
-static void bad_init2(t_cub3D *game, int part)
+static void	bad_init2(t_cub3D *game, int part)
 {
 	if (part == 4)
 	{
@@ -40,7 +40,7 @@ static void bad_init2(t_cub3D *game, int part)
 	return ;
 }
 
-void *bad_init(t_cub3D *game, int part)
+void	*bad_init(t_cub3D *game, int part)
 {
 	if (part == 1)
 	{

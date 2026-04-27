@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:34:10 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/24 10:48:09 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 10:58:17 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	which_key(t_cub3D *game)
 	speed = 0.05;
 	angle = game->player->angle;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		apply_movement(game, cos(angle) * speed, sin(angle)* speed);
+		apply_movement(game, cos(angle) * speed, sin(angle) * speed);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 		apply_movement(game, -cos(angle) * speed, -sin(angle) * speed);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
@@ -60,7 +60,7 @@ static void	player_movement(t_cub3D *game)
 
 void	game_loop(void *param)
 {
-	t_cub3D *game;
+	t_cub3D	*game;
 
 	game = (t_cub3D *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))

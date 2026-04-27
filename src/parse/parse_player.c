@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:09:24 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:03:05 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 11:07:11 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	count_player(t_screen *screen, t_player *player)
 	return (0);
 }
 
-int parse_player(t_cub3D *game)
+int	parse_player(t_cub3D *game)
 {
 	if (count_player(game->screen, game->player))
 		return (1);

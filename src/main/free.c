@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 11:24:35 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/24 11:23:48 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/04/27 10:57:23 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,37 @@ int	free_file(char **file, int type)
 	return (0);
 }
 
-static void free_paths(t_cub3D *game)
+static void	free_paths(t_cub3D *game)
 {
 	if (game->paths->n_path)
-        	free(game->paths->n_path);
-    if (game->paths->s_path)
-        	free(game->paths->s_path);
-    if (game->paths->e_path)
-        	free(game->paths->e_path);
-    if (game->paths->w_path)
-        	free(game->paths->w_path);
-    if (game->paths->floor_path)
-        	free(game->paths->floor_path);
-    if (game->paths->ceiling_path)
-        	free(game->paths->ceiling_path);
+		free(game->paths->n_path);
+	if (game->paths->s_path)
+		free(game->paths->s_path);
+	if (game->paths->e_path)
+		free(game->paths->e_path);
+	if (game->paths->w_path)
+		free(game->paths->w_path);
+	if (game->paths->floor_path)
+		free(game->paths->floor_path);
+	if (game->paths->ceiling_path)
+		free(game->paths->ceiling_path);
 }
 
-static void free_textures(t_cub3D *game)
+static void	free_textures(t_cub3D *game)
 {
 	if (game->textures->north_t)
-        mlx_delete_texture(game->textures->north_t);
-    if (game->textures->south_t)
-        mlx_delete_texture(game->textures->south_t);
-    if (game->textures->east_t)
-        mlx_delete_texture(game->textures->east_t);
-    if (game->textures->west_t)
-        mlx_delete_texture(game->textures->west_t);
+		mlx_delete_texture(game->textures->north_t);
+	if (game->textures->south_t)
+		mlx_delete_texture(game->textures->south_t);
+	if (game->textures->east_t)
+		mlx_delete_texture(game->textures->east_t);
+	if (game->textures->west_t)
+		mlx_delete_texture(game->textures->west_t);
 }
 
-static void free_grid(t_cub3D *game)
+static void	free_grid(t_cub3D *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (game->screen->grid)
@@ -76,11 +76,10 @@ static void free_grid(t_cub3D *game)
 	}
 }
 
-int free_game(t_cub3D *game, int mode)
+int	free_game(t_cub3D *game, int mode)
 {
 	if (!game)
 		return (mode);
-
 	if (game->screen)
 	{
 		free_grid(game);
