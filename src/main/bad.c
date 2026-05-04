@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   bad.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 11:06:08 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:39:50 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:35:33 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
-int bad_game(int i)
+int	bad_game(int i)
 {
 	printf("Error\nGame memory allocation failed");
 	return (i);
 }
 
-static void bad_init2(t_cub3D *game, int part)
+static void	bad_init2(t_cub3D *game, int part)
 {
 	if (part == 4)
 	{
@@ -40,7 +40,7 @@ static void bad_init2(t_cub3D *game, int part)
 	return ;
 }
 
-void *bad_init(t_cub3D *game, int part)
+void	*bad_init(t_cub3D *game, int part)
 {
 	if (part == 1)
 	{

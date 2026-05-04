@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:24:06 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:42:00 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:38:12 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 int	validate_parsed_data(t_cub3D *game)
 {

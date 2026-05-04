@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/21 11:36:17 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/04 10:36:19 by addos-sa         ###   ########.fr       */
+/*   Created: 2026/04/27 11:04:24 by addos-sa          #+#    #+#             */
+/*   Updated: 2026/05/04 10:35:24 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D_bonus.h"
 
-void	init_image(t_cub3D *game)
+void	mouse_movement(t_cub3D *game)
 {
-	if (!game)
-		return ;
-	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	if (!game->img)
-		return ((void)bad_init(game, 5));
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
-	return ;
+	int32_t	x;
+	int32_t	y;
+	int32_t	center;
+	double	angle_speed;
+
+	center = WIDTH / 2;
+	angle_speed = 0.0015;
+	mlx_get_mouse_pos(game->mlx, &x, &y);
+	if (x != center)
+	{
+		game->player->angle += (x - center) * angle_speed;
+		if (game->player->angle > 2 * PI)
+			game->player->angle -= 2 * PI;
+		if (game->player->angle < 0)
+			game->player->angle += 2 * PI;
+		mlx_set_mouse_pos(game->mlx, center, HEIGHT / 2);
+	}
 }

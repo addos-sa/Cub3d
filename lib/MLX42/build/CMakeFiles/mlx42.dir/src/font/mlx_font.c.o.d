@@ -1,6 +1,6 @@
 CMakeFiles/mlx42.dir/src/font/mlx_font.c.o: \
-  /home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/src/font/mlx_font.c \
-  /home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/src/font/font.h \
+  /home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/src/font/mlx_font.c \
+  /home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/src/font/font.h \
   /usr/lib/llvm-12/lib/clang/12.0.1/include/stdint.h \
   /usr/include/stdint.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
@@ -17,15 +17,15 @@ CMakeFiles/mlx42.dir/src/font/mlx_font.c.o: \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/include/MLX42/MLX42_Int.h \
-  /home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/include/MLX42/MLX42.h \
+  /home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/include/MLX42/MLX42_Int.h \
+  /home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/include/MLX42/MLX42.h \
   /usr/lib/llvm-12/lib/clang/12.0.1/include/stddef.h \
   /usr/lib/llvm-12/lib/clang/12.0.1/include/__stddef_max_align_t.h \
   /usr/lib/llvm-12/lib/clang/12.0.1/include/stdbool.h \
-  /home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/include/lodepng/lodepng.h \
+  /home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/include/lodepng/lodepng.h \
   /usr/include/string.h \
-  /home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/include/glad/glad.h \
-  /home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/include/KHR/khrplatform.h \
+  /home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/include/glad/glad.h \
+  /home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/include/KHR/khrplatform.h \
   /usr/include/GLFW/glfw3.h /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \

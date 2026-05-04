@@ -6,11 +6,11 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:14 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/23 11:17:01 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:37:29 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 void	draw_back(t_cub3D *game)
 {
@@ -55,8 +55,10 @@ int	text_to_color(t_cub3D *game, int tex_x, int tex_y)
 	mlx_texture_t	*tex;
 
 	tex = game->ac_text;
-	if (tex_x < 0 || (uint32_t)tex_x >= tex->width || 
-		tex_y < 0 || (uint32_t)tex_y >= tex->height)
+	if (!tex || !tex->pixels)
+		return (0xFF00FFFF);
+	if (tex_x < 0 || (uint32_t)tex_x >= tex->width
+		|| tex_y < 0 || (uint32_t)tex_y >= tex->height)
 		return (0);
 	index = (tex_y * tex->width + tex_x) * 4;
 	color = (tex->pixels[index] << 16)

@@ -6,11 +6,31 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 11:34:10 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/23 10:09:39 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:35:49 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
+
+void	key_hook_handler(mlx_key_data_t keydata, void *param)
+{
+	t_cub3D	*game;
+
+	game = (t_cub3D *)param;
+	if (keydata.key == MLX_KEY_Q && keydata.action == MLX_PRESS)
+	{
+		game->player->mouse = !game->player->mouse;
+		if (game->player->mouse == 1)
+		{
+			mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+			mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+		}
+		else
+			mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
+	}
+	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
+		game->player->map = !game->player->map;
+}
 
 static void	apply_movement(t_cub3D *game, double dx, double dy)
 {
@@ -33,7 +53,7 @@ static void	which_key(t_cub3D *game)
 	speed = 0.05;
 	angle = game->player->angle;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		apply_movement(game, cos(angle) * speed, sin(angle)* speed);
+		apply_movement(game, cos(angle) * speed, sin(angle) * speed);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 		apply_movement(game, -cos(angle) * speed, -sin(angle) * speed);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
@@ -60,12 +80,17 @@ static void	player_movement(t_cub3D *game)
 
 void	game_loop(void *param)
 {
-	t_cub3D *game;
+	t_cub3D	*game;
 
 	game = (t_cub3D *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	player_movement(game);
+	if (game->player->mouse == 1)
+		mouse_movement(game);
 	ft_memset(game->img->pixels, 0, game->img->width * game->img->height * 4);
+	is_there_a_door(game);
 	draw_loop(game);
+	if (game->player->map == 1)
+		draw_minimap(game);
 }

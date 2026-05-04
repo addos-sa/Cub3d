@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:55:48 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 12:53:56 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:36:41 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 static int	line_counter(int fd)
 {

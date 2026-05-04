@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse_paths.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:25:21 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:33:39 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:36:52 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 static int	all_paths_found(t_cub3D *game)
 {
-	return (game->paths->n_path && game->paths->s_path
-		&& game->paths->w_path && game->paths->e_path
+	return (game->paths->n_path && game->paths->s_path && game->paths->w_path
+		&& game->paths->e_path && game->paths->d_path
 		&& game->paths->floor_path && game->paths->ceiling_path);
 }
 
@@ -32,10 +32,14 @@ static int	parse_path_line(t_cub3D *game, char *line)
 		game->paths->w_path = ft_strtrim(trim + 3, " \t\n");
 	else if (ft_strncmp(trim, "EA ", 3) == 0)
 		game->paths->e_path = ft_strtrim(trim + 3, " \t\n");
+	else if (ft_strncmp(trim, "D ", 2) == 0)
+		game->paths->d_path = ft_strtrim(trim + 2, " \t\n");
 	else if (ft_strncmp(trim, "F ", 2) == 0)
 		game->paths->floor_path = ft_strtrim(trim + 2, " \t\n");
 	else if (ft_strncmp(trim, "C ", 2) == 0)
 		game->paths->ceiling_path = ft_strtrim(trim + 2, " \t\n");
+	else if (ft_strncmp(trim, "DR ", 2) == 0)
+		game->paths->d_path = ft_strtrim(trim + 3, " \t\n");
 	else
 		return (0);
 	return (1);

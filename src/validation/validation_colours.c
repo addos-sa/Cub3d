@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validation_colours.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 10:33:05 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:42:44 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:37:56 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 static int	separate_numbers(const char **str, int *out)
 {
@@ -64,7 +64,7 @@ static int	validate_colour_path(const char *str)
 	return (0);
 }
 
-int validate_colours(t_paths *paths)
+int	validate_colours(t_paths *paths)
 {
 	if (!paths)
 		return (1);

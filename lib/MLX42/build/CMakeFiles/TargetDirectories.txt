@@ -1,7 +1,7 @@
-/home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/build/CMakeFiles/mlx42.dir
-/home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/build/CMakeFiles/edit_cache.dir
-/home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/build/CMakeFiles/rebuild_cache.dir
-/home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/build/CMakeFiles/list_install_components.dir
-/home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/build/CMakeFiles/install.dir
-/home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/build/CMakeFiles/install/local.dir
-/home/addos-sa/42_cursus/Mlt_4/Cub3d/lib/MLX42/build/CMakeFiles/install/strip.dir
+/home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/build/CMakeFiles/mlx42.dir
+/home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/build/CMakeFiles/edit_cache.dir
+/home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/build/CMakeFiles/rebuild_cache.dir
+/home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/build/CMakeFiles/list_install_components.dir
+/home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/build/CMakeFiles/install.dir
+/home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/build/CMakeFiles/install/local.dir
+/home/addos-sa/42_cursus/Mlt_4/Cub3d_with_bonus/lib/MLX42/build/CMakeFiles/install/strip.dir

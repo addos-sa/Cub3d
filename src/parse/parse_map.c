@@ -3,16 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:00:00 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/20 17:19:29 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:36:46 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
-static void calculate_limits(t_cub3D *game)
+static char	*get_padded_row(char *original, int width)
+{
+	char	*padded;
+	int		j;
+
+	padded = malloc(sizeof(char) * (width + 1));
+	if (!padded)
+		return (NULL);
+	j = 0;
+	while (original[j])
+	{
+		padded[j] = original[j];
+		j++;
+	}
+	while (j < width)
+	{
+		padded[j] = ' ';
+		j++;
+	}
+	padded[width] = '\0';
+	return (padded);
+}
+
+static int	pad_grid(t_cub3D *game)
+{
+	int		i;
+	char	*padded_row;
+
+	i = 0;
+	while (i < game->screen->height)
+	{
+		padded_row = get_padded_row(game->screen->grid[i], game->screen->width);
+		if (!padded_row)
+			return (1);
+		free(game->screen->grid[i]);
+		game->screen->grid[i] = padded_row;
+		i++;
+	}
+	return (0);
+}
+
+static void	calculate_limits(t_cub3D *game)
 {
 	int	i;
 	int	j;
@@ -30,26 +71,6 @@ static void calculate_limits(t_cub3D *game)
 		i++;
 	}
 	game->screen->height = i;
-}
-
-static int	free_file(char **file, int type)
-{
-	int	i;
-
-	if (!file)
-		return (1);
-	i = 0;
-	while (file[i])
-	{
-		free(file[i]);
-		i++;
-	}
-	free(file);
-	if (type == 2)
-		printf("Error\n No map found\n");
-	else if (type == 1 || type == 2)
-		return (1);
-	return (0);
 }
 
 static char	**extract_grid(char **file, int start)
@@ -96,5 +117,7 @@ int	parse_map(t_cub3D *game, int fd, char *map_path)
 	if (!game->screen->grid)
 		return (1);
 	calculate_limits(game);
+	if (pad_grid(game) != 0)
+		return (1);
 	return (0);
 }

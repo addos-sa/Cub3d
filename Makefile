@@ -34,7 +34,8 @@ PARSE_SRCS =	$(SRC_DIR)parse/get_map.c \
 				$(SRC_DIR)parse/parse_map.c \
 				$(SRC_DIR)parse/parse_paths.c \
 				$(SRC_DIR)parse/parse_player.c \
-				$(SRC_DIR)parse/parse.c
+				$(SRC_DIR)parse/parse.c \
+				$(SRC_DIR)parse/get_color.c
 
 RAYCAST_SRCS =	$(SRC_DIR)ray_casting/calculations.c \
 				$(SRC_DIR)ray_casting/draw_funtions.c \
@@ -45,7 +46,13 @@ VALIDATION_SRCS =	$(SRC_DIR)validation/validation_colours.c \
 					$(SRC_DIR)validation/validation_textures.c \
 					$(SRC_DIR)validation/validation.c
 
-SRCS = $(MAIN_SRCS) $(PARSE_SRCS) $(RAYCAST_SRCS) $(VALIDATION_SRCS)
+BONUS_SRCS =	$(SRC_DIR)bonus/mouse.c \
+				$(SRC_DIR)bonus/draw_minimap.c \
+				$(SRC_DIR)bonus/door.c
+
+SRCS = $(MAIN_SRCS) $(PARSE_SRCS) $(RAYCAST_SRCS) $(VALIDATION_SRCS) $(BONUS_SRCS)
+
+
 
 OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 OBJS_SAN = $(patsubst $(SRC_DIR)%.c,$(OBJ_SAN_DIR)%.o,$(SRCS))

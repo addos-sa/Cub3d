@@ -6,13 +6,13 @@
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 11:08:45 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/23 11:53:02 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:36:12 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
-int get_color_value(char *str)
+int	get_color_value(char *str)
 {
 	int	r;
 	int	g;

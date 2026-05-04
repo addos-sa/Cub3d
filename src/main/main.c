@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:04 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:25:13 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:35:59 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 static void	close_handler(void *param)
 {
@@ -21,6 +21,16 @@ static void	close_handler(void *param)
 	exit(0);
 }
 
+static void	game_running(t_cub3D *game)
+{
+	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+	mlx_close_hook(game->mlx, &close_handler, game);
+	mlx_key_hook(game->mlx, &key_hook_handler, game);
+	mlx_loop_hook(game->mlx, &game_loop, game);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+	mlx_loop(game->mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub3D	*game;
@@ -29,7 +39,7 @@ int	main(int argc, char **argv)
 		return (bad_arg(argc));
 	if (ft_strlen(argv[1]) == 0)
 		return (bad_arg(0));
-	game = (t_cub3D*)malloc(sizeof(t_cub3D));
+	game = (t_cub3D *)malloc(sizeof(t_cub3D));
 	if (!game)
 		return (bad_game(1));
 	game = init_game(game);
@@ -40,11 +50,7 @@ int	main(int argc, char **argv)
 		return (free_game(game, 1));
 	init_image(game);
 	if (game->game_running)
-	{
-		mlx_close_hook(game->mlx, &close_handler, game);
-		mlx_loop_hook(game->mlx, &game_loop, game);
-		mlx_loop(game->mlx);
-	}
+		game_running(game);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 	return (free_game(game, 0));

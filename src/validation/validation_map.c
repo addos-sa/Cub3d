@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validation_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 12:52:50 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/17 10:45:52 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:38:02 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 static int	char_invalid_character(t_screen *screen)
 {
@@ -26,11 +26,11 @@ static int	char_invalid_character(t_screen *screen)
 			if (screen->grid[i][j] != '0' && screen->grid[i][j] != '1' &&
 					screen->grid[i][j] != 'N' && screen->grid[i][j] != 'S' &&
 					screen->grid[i][j] != 'E' && screen->grid[i][j] != 'W' &&
-					screen->grid[i][j] != ' ' && screen->grid[i][j] != '\n' &&
-					screen->grid[i][j] != '\0')
+					screen->grid[i][j] != 'D' && screen->grid[i][j] != ' ' &&
+					screen->grid[i][j] != '\n' && screen->grid[i][j] != '\0')
 			{
 				printf("Error\n Invalid character in coordinates (%d, %d)\n",
-						i, j);
+					i, j);
 				return (1);
 			}
 			j++;
@@ -42,7 +42,8 @@ static int	char_invalid_character(t_screen *screen)
 
 static int	is_walkable(char c)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == 'D');
 }
 
 static int	check_cell_surrounded(t_screen *screen, int i, int j)

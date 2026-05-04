@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:09:24 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/21 11:03:05 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/04 10:36:58 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../include/cub3D_bonus.h"
 
 static int	count_error(int n_player)
 {
@@ -39,7 +39,7 @@ static int	count_player(t_screen *screen, t_player *player)
 		while (j < screen->width)
 		{
 			if (screen->grid[i][j] == 'N' || screen->grid[i][j] == 'S'
-				||screen->grid[i][j] == 'E' || screen->grid[i][j] == 'W')
+				|| screen->grid[i][j] == 'E' || screen->grid[i][j] == 'W')
 			{
 				player->position.x = j + 0.5;
 				player->position.y = i + 0.5;
@@ -54,7 +54,7 @@ static int	count_player(t_screen *screen, t_player *player)
 	return (0);
 }
 
-int parse_player(t_cub3D *game)
+int	parse_player(t_cub3D *game)
 {
 	if (count_player(game->screen, game->player))
 		return (1);
