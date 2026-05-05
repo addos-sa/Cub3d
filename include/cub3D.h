@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/27 11:13:44 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 10:03:52 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-typedef struct s_DDA
+typedef struct s_dda
 {
 	double	delta_dist_x;
 	double	delta_dist_y;
@@ -41,7 +41,7 @@ typedef struct s_DDA
 	int		step_y;
 	int		side;
 	int		hit;
-}	t_DDA;
+}	t_dda;
 
 typedef struct s_ray
 {
@@ -152,9 +152,9 @@ int				get_color_hex(char *rgb_str);
 
 			/*----------calculations----------*/
 
-void			calculate_for_DDA(t_cub3D *game, t_ray *ray, t_DDA *info);
+void			calculate_for_dda(t_cub3D *game, t_ray *ray, t_dda *info);
 int				is_wall(t_cub3D *game, double pos_x, double pos_y);
-void			wall_loop(t_cub3D *game, t_DDA *info);
+void			wall_loop(t_cub3D *game, t_dda *info);
 mlx_texture_t	*wl_text(t_cub3D *game, double ray_x, double ray_y, double ang);
 void			set_wall_texture(t_cub3D *game, t_ray *ray, int side);
 
