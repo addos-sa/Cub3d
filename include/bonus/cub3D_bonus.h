@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 11:18:06 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/05/05 11:20:57 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -24,9 +24,9 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "../lib/libft/libft.h"
-# include "../lib/ft_printf/ft_printf.h"
-# include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../../lib/libft/libft.h"
+# include "../../lib/ft_printf/ft_printf.h"
+# include "../../lib/MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_dda
 {
@@ -74,6 +74,7 @@ typedef struct s_textures
 	mlx_texture_t	*north_t;
 	mlx_texture_t	*south_t;
 	mlx_texture_t	*west_t;
+	mlx_texture_t	*door_t;
 }	t_textures;
 
 typedef struct s_player
@@ -86,6 +87,8 @@ typedef struct s_player
 	bool			k_left;
 	bool			r_left;
 	bool			r_right;
+	bool			mouse;
+	bool			map;
 }	t_player;
 
 typedef struct s_paths
@@ -94,6 +97,7 @@ typedef struct s_paths
 	char			*n_path;
 	char			*s_path;
 	char			*w_path;
+	char			*d_path;
 	char			*floor_path;
 	char			*ceiling_path;
 }	t_paths;
@@ -153,19 +157,20 @@ int				get_color_hex(char *rgb_str);
 
 			/*----------calculations----------*/
 
-void			calculate_for_dda(t_cub3D *game, t_ray *ray, t_dda *info);
 int				is_wall(t_cub3D *game, double pos_x, double pos_y);
-void			wall_loop(t_cub3D *game, t_dda *info);
 mlx_texture_t	*wl_text(t_cub3D *game, double ray_x, double ray_y, double ang);
-void			set_wall_texture(t_cub3D *game, t_ray *ray, int side);
+void			set_wall_texture(t_cub3D *game, t_ray *ray, t_dda *info);
+void			calculate_for_dda(t_cub3D *game, t_ray *ray, t_dda *info);
+void			wall_loop(t_cub3D *game, t_dda *info);
 
 			/*---------draw_functions---------*/
 
 int				draw_loop(t_cub3D *game);
+void			draw_back(t_cub3D *game);
+void			pixeling(int x, int y, int color, t_cub3D *game);
 
 			/*------------graphics------------*/
 
-void			draw_back(t_cub3D *game);
 bool			touch_wall(double ray_x, double ray_y, t_cub3D *game);
 int				text_to_color(t_cub3D *game, int tex_x, int tex_y);
 
@@ -175,5 +180,12 @@ int				validate_colours(t_paths *paths);
 int				validate_map(t_screen *screen);
 int				validate_texture_files(t_paths *paths);
 int				validate_parsed_data(t_cub3D *game);
+
+/*-------------------------extra-------------------------*/
+
+void			mouse_movement(t_cub3D *game);
+void			key_hook_handler(mlx_key_data_t keydata, void *param);
+void			draw_minimap(t_cub3D *game);
+void			is_there_a_door(t_cub3D *game);
 
 #endif

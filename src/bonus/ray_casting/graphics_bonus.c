@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.c                                         :+:      :+:    :+:   */
+/*   graphics_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:14 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/27 11:11:11 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:44:09 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
 void	draw_back(t_cub3D *game)
 {
@@ -55,6 +55,8 @@ int	text_to_color(t_cub3D *game, int tex_x, int tex_y)
 	mlx_texture_t	*tex;
 
 	tex = game->ac_text;
+	if (!tex || !tex->pixels)
+		return (0xFF00FFFF);
 	if (tex_x < 0 || (uint32_t)tex_x >= tex->width
 		|| tex_y < 0 || (uint32_t)tex_y >= tex->height)
 		return (0);

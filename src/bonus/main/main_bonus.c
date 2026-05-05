@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: addos-sa <addos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:04 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 11:17:46 by addos-sa         ###   ########.fr       */
+/*   Updated: 2026/05/05 11:20:39 by addos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
 void	good_angle(t_cub3D *game)
 {
@@ -38,6 +38,16 @@ static void	close_handler(void *param)
 	exit(0);
 }
 
+static void	game_running(t_cub3D *game)
+{
+	mlx_set_mouse_pos(game->mlx, WIDTH / 2, HEIGHT / 2);
+	mlx_close_hook(game->mlx, &close_handler, game);
+	mlx_key_hook(game->mlx, &key_hook_handler, game);
+	mlx_loop_hook(game->mlx, &game_loop, game);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+	mlx_loop(game->mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub3D	*game;
@@ -57,11 +67,7 @@ int	main(int argc, char **argv)
 		return (free_game(game, 1));
 	init_image(game);
 	if (game->game_running)
-	{
-		mlx_close_hook(game->mlx, &close_handler, game);
-		mlx_loop_hook(game->mlx, &game_loop, game);
-		mlx_loop(game->mlx);
-	}
+		game_running(game);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 	return (free_game(game, 0));

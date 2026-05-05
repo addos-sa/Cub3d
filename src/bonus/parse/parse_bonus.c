@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 11:58:28 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/27 11:05:39 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:43:56 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
 static int	check_file_type(char *map_path)
 {
@@ -46,8 +46,10 @@ static int	set_textures(t_cub3D *game)
 	game->textures->south_t = mlx_load_png(game->paths->s_path);
 	game->textures->west_t = mlx_load_png(game->paths->w_path);
 	game->textures->east_t = mlx_load_png(game->paths->e_path);
+	game->textures->door_t = mlx_load_png(game->paths->d_path);
 	if (!game->textures->north_t || !game->textures->south_t
-		|| !game->textures->west_t || !game->textures->east_t)
+		|| !game->textures->west_t || !game->textures->east_t
+		|| !game->textures->door_t)
 	{
 		printf("Error\nFailed to load textures\n");
 		return (1);

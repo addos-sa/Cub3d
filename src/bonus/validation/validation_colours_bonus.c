@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_colours.c                               :+:      :+:    :+:   */
+/*   validation_colours_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 10:33:05 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/27 11:11:49 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:44:16 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
 static int	separate_numbers(const char **str, int *out)
 {

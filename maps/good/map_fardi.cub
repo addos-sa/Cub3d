@@ -1,10 +1,10 @@
-C 109,148,245
-F 173,10,30
+SO ./textures/basic_SO.png
+C 255,255,250
+F 111,111,111
 
-NO ./textures/img_no.png
-SO ./textures/img_so.png
-WE ./textures/img_we.png
-EA ./textures/img_ea.png
+NO ./textures/basic_NO.png
+WE ./textures/basic_WE.png
+EA ./textures/basic_EA.png
 
 111111111111111111
 100000000000000001

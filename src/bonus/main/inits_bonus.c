@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits.c                                            :+:      :+:    :+:   */
+/*   inits_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:47:37 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/27 10:55:12 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:43:40 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
 static void	init_paths(t_cub3D *game)
 {
@@ -18,6 +18,7 @@ static void	init_paths(t_cub3D *game)
 	game->paths->n_path = NULL;
 	game->paths->s_path = NULL;
 	game->paths->w_path = NULL;
+	game->paths->d_path = NULL;
 	game->paths->floor_path = NULL;
 	game->paths->ceiling_path = NULL;
 }
@@ -35,6 +36,8 @@ static void	init_player(t_cub3D *game)
 	game->player->k_up = false;
 	game->player->r_left = false;
 	game->player->r_right = false;
+	game->player->map = false;
+	game->player->mouse = false;
 }
 
 static void	init_textures(t_cub3D *game)
@@ -45,6 +48,7 @@ static void	init_textures(t_cub3D *game)
 	game->textures->north_t = NULL;
 	game->textures->south_t = NULL;
 	game->textures->west_t = NULL;
+	game->textures->door_t = NULL;
 }
 
 static void	init_screen(t_cub3D *game)

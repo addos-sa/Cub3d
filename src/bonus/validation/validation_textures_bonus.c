@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_textures.c                              :+:      :+:    :+:   */
+/*   validation_textures_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 12:24:54 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/27 11:12:00 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:44:41 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
 static int	validate_texture_path(char *path)
 {
@@ -43,6 +43,8 @@ int	validate_texture_files(t_paths *paths)
 	if (validate_texture_path(paths->e_path))
 		return (1);
 	if (validate_texture_path(paths->w_path))
+		return (1);
+	if (validate_texture_path(paths->d_path))
 		return (1);
 	return (0);
 }

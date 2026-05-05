@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_funtions.c                                    :+:      :+:    :+:   */
+/*   draw_funtions_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:00:05 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/05/05 09:37:16 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:44:07 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
-static void	pixeling(int x, int y, int color, t_cub3D *game)
+void	pixeling(int x, int y, int color, t_cub3D *game)
 {
 	int	index;
 
@@ -88,7 +88,7 @@ static void	draw_line(t_cub3D *game, int i, double start_x)
 		ray->wall_hit = game->player->position.x + info.wall_dst * ray->cos_a;
 	}
 	ray->wall_hit -= floor(ray->wall_hit);
-	set_wall_texture(game, ray, info.side);
+	set_wall_texture(game, ray, &info);
 	put_pixel(game, ray, i, info.wall_dst
 		* cos(game->player->angle - start_x));
 	free(ray);

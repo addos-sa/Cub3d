@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 11:24:35 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/27 10:57:23 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:43:38 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/bonus/cub3D_bonus.h"
 
 int	free_file(char **file, int type)
 {
@@ -58,6 +58,8 @@ static void	free_textures(t_cub3D *game)
 		mlx_delete_texture(game->textures->east_t);
 	if (game->textures->west_t)
 		mlx_delete_texture(game->textures->west_t);
+	if (game->textures->door_t)
+		mlx_delete_texture(game->textures->door_t);
 }
 
 static void	free_grid(t_cub3D *game)
