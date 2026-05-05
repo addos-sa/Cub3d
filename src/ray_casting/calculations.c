@@ -6,13 +6,13 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 08:49:21 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/27 11:09:31 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:36:23 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	calculate_for_dda(t_cub3D *game, t_ray *ray, t_DDA *info)
+void	calculate_for_dda(t_cub3D *game, t_ray *ray, t_dda *info)
 {
 	info->hit = 0;
 	if (ray->cos_a < 0)
@@ -55,7 +55,7 @@ int	is_wall(t_cub3D *game, double pos_x, double pos_y)
 	return (0);
 }
 
-void	wall_loop(t_cub3D *game, t_DDA *info)
+void	wall_loop(t_cub3D *game, t_dda *info)
 {
 	while (info->hit == 0)
 	{

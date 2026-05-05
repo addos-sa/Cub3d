@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:00:05 by addos-sa          #+#    #+#             */
-/*   Updated: 2026/04/27 11:10:42 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 09:37:16 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ static void	put_pixel(t_cub3D *game, t_ray *ray, int i, double dist)
 static void	draw_line(t_cub3D *game, int i, double start_x)
 {
 	t_ray	*ray;
-	t_DDA	info;
+	t_dda	info;
 
 	ray = create_ray(start_x, game);
 	info.map_x = (int)game->player->position.x;
 	info.map_y = (int)game->player->position.y;
 	info.delta_dist_x = fabs(1.0 / ray->cos_a);
 	info.delta_dist_y = fabs(1.0 / ray->sin_a);
-	calculate_for_DDA(game, ray, &info);
+	calculate_for_dda(game, ray, &info);
 	wall_loop(game, &info);
 	if (info.side == 0)
 	{
