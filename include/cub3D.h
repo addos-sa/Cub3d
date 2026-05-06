@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:56 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 10:03:52 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 12:26:58 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int				is_empty_line(char *line);
 int				is_space_or_empty(char c);
 t_ray			*create_ray(double start_x, t_cub3D *game);
 void			init_image(t_cub3D *game);
+void			good_angle(t_cub3D *game);
 
 /*-------------------------parse-------------------------*/
 
