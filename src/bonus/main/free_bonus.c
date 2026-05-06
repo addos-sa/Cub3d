@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 11:24:35 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 09:43:38 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 13:10:38 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	free_paths(t_cub3D *game)
 		free(game->paths->e_path);
 	if (game->paths->w_path)
 		free(game->paths->w_path);
+	if (game->paths->d_path)
+		free(game->paths->d_path);
 	if (game->paths->floor_path)
 		free(game->paths->floor_path);
 	if (game->paths->ceiling_path)
