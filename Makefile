@@ -132,6 +132,12 @@ $(B_NAME): $(B_OBJS) $(LIBFT) $(PRINTF)
 	@$(CC) $(CFLAGS) $(B_OBJS) $(LIBFT) $(PRINTF) $(LIBS) -o $(B_NAME)
 	@echo "Compiled $(B_NAME) successfully! ✅"
 
+bonus_sanitize: libmlx $(LIBFT) $(PRINTF) $(B_SAN_NAME)
+
+$(B_SAN_NAME): $(B_OBJS_SAN) $(LIBFT) $(PRINTF)
+	@$(CC) $(SANFLAGS) $(B_OBJS_SAN) $(LIBFT) $(PRINTF) $(LIBS) -o $(B_SAN_NAME)
+	@echo "Compiled $(B_SAN_NAME) with AddressSanitizer successfully!"
+
 clean:
 	@$(RM) -r $(OBJ_DIR) $(OBJ_SAN_DIR)
 	@make clean -C $(PRINTF_DIR)
