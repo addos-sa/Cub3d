@@ -6,11 +6,28 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:11:04 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 09:43:46 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 12:27:54 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/bonus/cub3D_bonus.h"
+
+void	good_angle(t_cub3D *game)
+{
+	char	dir;
+	int		x;
+	int		y;
+
+	x = game->player->position.x;
+	y = game->player->position.y;
+	dir = game->screen->grid[y][x];
+	if (dir == 'N')
+		game->player->angle = 3 * PI/2;
+	else if (dir == 'W')
+		game->player->angle = PI;
+	else if (dir == 'E')
+		game->player->angle = 0;
+}
 
 static void	close_handler(void *param)
 {

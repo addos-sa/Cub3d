@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 11:08:45 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 09:43:49 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/05 12:29:48 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_image(t_cub3D *game)
 {
 	if (!game)
 		return ;
+	good_angle(game);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 		return ((void)bad_init(game, 5));
