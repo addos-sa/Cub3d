@@ -1,0 +1,12 @@
+NO ./textures/basic_NO.png
+SO ./textures/basic_SO.png
+WE ./textures/basic_WE.png
+EA ./textures/basic_EA.png
+F 1,1,1
+C 10,10,255
+
+111111
+100001
+1000N0
+100001
+111101

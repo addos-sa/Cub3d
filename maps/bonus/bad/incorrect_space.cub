@@ -1,0 +1,13 @@
+NO ./textures/basic_NO.png
+SO ./textures/basic_SO.png
+WE ./textures/basic_WE.png
+EA ./textures/basic_EA.png
+DR ./textures/basic_DR.png
+F 220,100,0
+C 225,30,0
+
+1111111
+10D0001
+10000N1
+100 001
+1111111
