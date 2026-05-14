@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:47:37 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 09:43:40 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/14 10:35:58 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	init_player(t_cub3D *game)
 	game->player->r_left = false;
 	game->player->r_right = false;
 	game->player->map = false;
-	game->player->mouse = false;
+	game->player->mouse = true;
 }
 
 static void	init_textures(t_cub3D *game)

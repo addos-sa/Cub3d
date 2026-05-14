@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:25:21 by frasanch          #+#    #+#             */
-/*   Updated: 2026/05/05 09:44:00 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/14 10:02:22 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ static int	parse_path_line(t_cub3D *game, char *line)
 	char	*trim;
 
 	trim = skip_spaces(line);
-	if (ft_strncmp(trim, "NO ", 3) == 0)
+	if (ft_strncmp(trim, "NO ", 3) == 0 && !game->paths->n_path)
 		game->paths->n_path = ft_strtrim(trim + 3, " \t\n");
-	else if (ft_strncmp(trim, "SO ", 3) == 0)
+	else if (ft_strncmp(trim, "SO ", 3) == 0 && !game->paths->s_path)
 		game->paths->s_path = ft_strtrim(trim + 3, " \t\n");
-	else if (ft_strncmp(trim, "WE ", 3) == 0)
+	else if (ft_strncmp(trim, "WE ", 3) == 0 && !game->paths->w_path)
 		game->paths->w_path = ft_strtrim(trim + 3, " \t\n");
-	else if (ft_strncmp(trim, "EA ", 3) == 0)
+	else if (ft_strncmp(trim, "EA ", 3) == 0 && !game->paths->e_path)
 		game->paths->e_path = ft_strtrim(trim + 3, " \t\n");
-	else if (ft_strncmp(trim, "DR ", 3) == 0)
+	else if (ft_strncmp(trim, "DR ", 3) == 0 && !game->paths->d_path)
 		game->paths->d_path = ft_strtrim(trim + 3, " \t\n");
-	else if (ft_strncmp(trim, "F ", 2) == 0)
+	else if (ft_strncmp(trim, "F ", 2) == 0 && !game->paths->floor_path)
 		game->paths->floor_path = ft_strtrim(trim + 2, " \t\n");
-	else if (ft_strncmp(trim, "C ", 2) == 0)
+	else if (ft_strncmp(trim, "C ", 2) == 0 && !game->paths->ceiling_path)
 		game->paths->ceiling_path = ft_strtrim(trim + 2, " \t\n");
 	else
 		return (0);

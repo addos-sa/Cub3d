@@ -6,7 +6,7 @@
 /*   By: frasanch <frasanch@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:00:00 by frasanch          #+#    #+#             */
-/*   Updated: 2026/04/27 11:06:53 by frasanch         ###   ########.fr       */
+/*   Updated: 2026/05/14 10:10:19 by frasanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	parse_map(t_cub3D *game, int fd, char *map_path)
 
 	file = get_map(fd, map_path);
 	if (!file)
-		return (1);
+		return (bad_arg(0));
 	i = 0;
 	if (parse_paths(game, file, &i) != 0)
 		return (free_file(file, 1));
